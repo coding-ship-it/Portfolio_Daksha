@@ -1,8 +1,55 @@
+import Image from 'next/image';
+
 export default function Home() {
   return (
     <div className="min-h-screen">
+      {/* Navigation Header */}
+      <header className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm border-b border-gray-200 z-50">
+        <div className="max-w-6xl mx-auto px-6 py-4">
+          <div className="flex justify-between items-center">
+            <a href="#home" className="flex items-center space-x-3 text-xl font-bold text-gray-800 hover:text-gray-600 transition-colors">
+              <Image 
+                src="/coding.jpeg" 
+                alt="Coding" 
+                width={32}
+                height={32}
+                className="rounded-full object-cover opacity-80 mix-blend-multiply"
+              />
+              <span>Daksha Talekar</span>
+            </a>
+            <nav className="hidden md:flex space-x-8">
+              <a href="#home" className="text-gray-600 hover:text-gray-800 transition-colors font-medium">
+                Home
+              </a>
+              <a href="#about" className="text-gray-600 hover:text-gray-800 transition-colors font-medium">
+                About Me
+              </a>
+              <a href="#recommendations" className="text-gray-600 hover:text-gray-800 transition-colors font-medium">
+                Recommendations
+              </a>
+              <a href="#projects" className="text-gray-600 hover:text-gray-800 transition-colors font-medium">
+                Projects
+              </a>
+              <a href="#awards" className="text-gray-600 hover:text-gray-800 transition-colors font-medium">
+                Awards
+              </a>
+              <a href="#contact" className="text-gray-600 hover:text-gray-800 transition-colors font-medium">
+                Contact
+              </a>
+            </nav>
+            
+            {/* Mobile menu button */}
+            <button className="md:hidden text-gray-600 hover:text-gray-800">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
       {/* Hero Section */}
-      <section id="home" className="flex flex-col items-start justify-center min-h-screen px-6 bg-gray-100">
+      <section id="home" className="flex flex-col items-start justify-center min-h-screen px-6 bg-gray-100 pt-20">
         <div className="max-w-4xl mx-auto w-full">
           <h1 className="text-8xl md:text-9xl font-black mb-6 tracking-tight">
             <span className="block text-gray-800">DAKSHA</span>

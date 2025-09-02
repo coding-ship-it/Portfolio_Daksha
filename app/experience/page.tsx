@@ -1,3 +1,6 @@
+import Link from 'next/link';
+import Image from 'next/image';
+
 export default function Experience() {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -5,10 +8,17 @@ export default function Experience() {
       <header className="bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-4xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
-            <a href="/" className="text-2xl font-bold text-gray-800">
-              Daksha Talekar
-            </a>
-            <a 
+            <Link href="/" className="flex items-center space-x-3 text-2xl font-bold text-gray-800 hover:text-gray-600 transition-colors">
+              <Image 
+                src="/coding.jpeg" 
+                alt="Coding" 
+                width={40}
+                height={40}
+                className="rounded-full object-cover opacity-80 mix-blend-multiply"
+              />
+              <span>Daksha Talekar</span>
+            </Link>
+            <Link 
               href="/" 
               className="inline-flex items-center text-gray-600 hover:text-gray-800 transition-colors"
             >
@@ -16,7 +26,7 @@ export default function Experience() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
               Back to Home
-            </a>
+            </Link>
           </div>
         </div>
       </header>

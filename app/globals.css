@@ -34,6 +34,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Ensure sections account for fixed header */
+section {
+  scroll-margin-top: 80px;
+}
+
 /* Custom scrollbar with gray theme */
 ::-webkit-scrollbar {
   width: 6px;
