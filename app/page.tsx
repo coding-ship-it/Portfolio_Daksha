@@ -307,6 +307,17 @@ export default function Home() {
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                 </svg>
               </a>
+
+              <a
+                href="https://vercel.com/coding-ship-it"
+                target="_blank"
+                className="text-gray-600 hover:text-gray-800 transition-colors"
+                aria-label="Vercel"
+              >
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 22.525H0l12-21.05 12 21.05z"/>
+                </svg>
+              </a>
             </div>
           </div>
 

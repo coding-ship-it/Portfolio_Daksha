@@ -26,8 +26,8 @@ export default function Experience() {
         <section className="mb-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-12 text-gray-800">About Me</h1>
           
-          <div className="bg-white rounded-xl p-8 shadow-md border border-gray-200 mb-8">
-            <div className="space-y-6">
+          <div className="max-w-3xl">
+            <div className="space-y-4">
               <p className="text-lg text-gray-600 leading-relaxed">
                 Hi, I'm Daksha Talekar — a Software Engineer who enjoys building systems that make data less of a puzzle and more of a story.
               </p>
@@ -53,147 +53,133 @@ export default function Experience() {
 
         {/* Professional Experience Section */}
         <section>
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-gray-800">Professional Experience</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-gray-800">Worked at</h2>
 
           {/* Experience Tree Structure */}
-          <div className="space-y-8">
-            {/* Expedia Group */}
-            <div className="bg-white rounded-xl p-8 shadow-md border border-gray-200">
-              <div className="flex items-start mb-6">
-                <div className="w-4 h-4 bg-blue-500 rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-gray-800 mb-2">Software Development Engineer I</h3>
-                  <div className="flex items-center mb-4">
-                    <span className="text-xl font-semibold text-blue-600 mr-4">Expedia Group</span>
-                    <span className="text-gray-500">September 2023 – Present</span>
+          <div className="relative">
+            {/* Vertical Timeline Line */}
+            <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gray-300"></div>
+            
+            <div className="space-y-16">
+              {/* Expedia Group */}
+              <div className="relative">
+                <div className="flex items-start">
+                  {/* Company Logo/Icon */}
+                  <div className="relative z-10 flex-shrink-0 w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center mr-6">
+                    <div className="w-8 h-8 bg-gray-600 rounded flex items-center justify-center">
+                      <span className="text-white font-bold text-sm">E</span>
+                    </div>
                   </div>
                   
-                  <div className="ml-6 border-l-2 border-gray-200 pl-6">
-                    <h4 className="text-lg font-semibold text-gray-700 mb-3">Key Responsibilities & Achievements:</h4>
-                    <ul className="space-y-3 text-gray-600">
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span>Built real-time data pipelines and managed Iceberg tables for the Integrated Data Stores (IDS) platform</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span>Developed and maintained REST APIs using Java and Spring Boot for critical data services</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span>Implemented fine-grained authorization systems and real-time synchronization platforms</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span>Ensured platform reliability and scalability for high-traffic travel applications</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span>Collaborated on cross-functional teams to deliver critical features and improvements</span>
-                      </li>
-                    </ul>
-                    
-                    <div className="mt-4">
-                      <h5 className="font-semibold text-gray-700 mb-2">Technologies:</h5>
-                      <div className="flex flex-wrap gap-2">
-                        <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Java</span>
-                        <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Spring Boot</span>
-                        <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">REST APIs</span>
-                        <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Apache Iceberg</span>
-                        <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Data Pipelines</span>
-                        <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Microservices</span>
+                  <div className="flex-1 min-w-0">
+                    <div className="pb-8">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-1">Software development engineer I</h3>
+                      <div className="text-gray-700 font-medium mb-2">Expedia Group</div>
+                      <div className="text-gray-500 text-sm mb-4">Sep 2023 - Present (2 yr, &lt; 1 m) • Bengaluru, Karnataka, India</div>
+                      
+                      <div className="text-gray-600 mb-4">
+                        <div className="font-medium text-gray-700 mb-2">Team: Data Store SDK</div>
+                      </div>
+                      
+                      <div className="space-y-4 text-gray-600 leading-relaxed">
+                        <div>
+                          <div className="font-medium text-gray-700 mb-2">Data Platform:</div>
+                          <p className="text-sm">
+                            Currently working on self served data platform, that could help teams move and explore their data in an elegant way by allowing dataset owners to onboard datasets, which can then be accessed via unified APIs by consumers for personalisation.
+                          </p>
+                        </div>
+
+                        <div>
+                          <div className="font-medium text-gray-700 mb-2">Merlon - Relation Based Fine Grained Authorization System (inspired by Google Zanzibar):</div>
+                          <p className="text-sm">
+                            Designed and implemented a Zanzibar inspired relation based authorization model for scalable ACL(Access Management List) management. Built fine-grained control at both dataset and attribute levels, ensuring sensitive fields(e.g., email, username) are protected even within non-sensitive datasets. Introduced producer-driven onboarding workflows where data owners define authorized clients, mark sensitive attributes, and dynamically update access policies. Enforced token subject–based authorization (beyond raw client IDs), ensuring strict identity correctness and preventing privilege leaks across versions.
+                          </p>
+                        </div>
+
+                        <div>
+                          <div className="font-medium text-gray-700 mb-2">DataSync – Real-Time Data Synchronisation Pipeline:</div>
+                          <p className="text-sm">
+                            Built a CDC-based ingestion pipeline using Kafka, Flink, and Apache Iceberg to synchronize datasets across multiple datastores. Implemented snapshotting, rollback, and time-travel queries in Iceberg, with separate retention policies for PII vs non-PII data to enforce compliance. Automated daily DAG Airflows for recording snapshot versions, tagging, and long-term analytical data retention.
+                          </p>
+                        </div>
+
+                        <div>
+                          <div className="font-medium text-gray-700 mb-2">Flink Applications & CI/CD Automation:</div>
+                          <p className="text-sm">
+                            Developed Flink applications using Dataproc Flink Starter template, eliminating duplicate code by reusing artifacts from the main Flink-demo app. Automated deployment pipelines with Spinnaker, GitHub Actions, and Docker, integrated vault secrets and S3 storage.
+                          </p>
+                        </div>
+
+                        <div>
+                          <div className="font-medium text-gray-700 mb-2">Iceberg Table Management:</div>
+                          <p className="text-sm">
+                            Created Hive & Iceberg tables via Schema Deploy, defining schemas in Git-managed HQL files and promoting them through deployment pipelines.
+                          </p>
+                        </div>
+
+                        <div>
+                          <div className="font-medium text-gray-700 mb-2">Code Coverage:</div>
+                          <p className="text-sm">
+                            Wrote rigorous unit test and integration tests for services within platform, increasing the method coverage by over 40 percent.
+                          </p>
+                        </div>
+
+                        <div>
+                          <div className="font-medium text-gray-700 mb-2">Backend & UI Support:</div>
+                          <p className="text-sm">
+                            Backend lead for UI support; enhanced Java (Spring Boot) APIs to simplify frontend workflows. Served as liaison between backend and external frontend teams.
+                          </p>
+                        </div>
+
+                        <div>
+                          <div className="font-medium text-gray-700 mb-2">Microservices:</div>
+                          <p className="text-sm">
+                            Implemented several backend endpoints in Spring Boot. Worked on the re-platform and code base migration to optimize costs and serviceability.
+                          </p>
+                        </div>
+                        
+                        <div>
+                          <div className="font-medium text-gray-700 mb-2">Frameworks/Tools:</div>
+                          <div className="flex flex-wrap gap-1">
+                            <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Java</span>
+                            <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Core Java</span>
+                            <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Spring Framework</span>
+                            <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Spring Boot</span>
+                            <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Apache Kafka</span>
+                            <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Apache Flink</span>
+                            <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Apache Iceberg</span>
+                            <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Microservices</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* VOIS Internship */}
-            <div className="bg-white rounded-xl p-8 shadow-md border border-gray-200">
-              <div className="flex items-start mb-6">
-                <div className="w-4 h-4 bg-green-500 rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-gray-800 mb-2">Software Engineering Intern</h3>
-                  <div className="flex items-center mb-4">
-                    <span className="text-xl font-semibold text-green-600 mr-4">VOIS (Vodafone Intelligent Solutions)</span>
-                    <span className="text-gray-500">Summer 2022</span>
-                  </div>
-                  
-                  <div className="ml-6 border-l-2 border-gray-200 pl-6">
-                    <h4 className="text-lg font-semibold text-gray-700 mb-3">Project & Contributions:</h4>
-                    <ul className="space-y-3 text-gray-600">
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span>Built a platform to consolidate blood bank data across the city</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span>Connected hospitals and enabled quicker access to life-saving resources</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span>Developed full-stack solutions for healthcare data management</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span>Gained experience in how technology can directly impact people's lives</span>
-                      </li>
-                    </ul>
-                    
-                    <div className="mt-4">
-                      <h5 className="font-semibold text-gray-700 mb-2">Technologies:</h5>
-                      <div className="flex flex-wrap gap-2">
-                        <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">Full-Stack Development</span>
-                        <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">Database Management</span>
-                        <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">Healthcare Systems</span>
-                        <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">Data Integration</span>
-                      </div>
+              {/* VOIS Internship */}
+              <div className="relative">
+                <div className="flex items-start">
+                  {/* Company Logo/Icon */}
+                  <div className="relative z-10 flex-shrink-0 w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center mr-6">
+                    <div className="w-8 h-8 bg-gray-600 rounded flex items-center justify-center">
+                      <span className="text-white font-bold text-sm">V</span>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Volunteer Experience */}
-            <div className="bg-white rounded-xl p-8 shadow-md border border-gray-200">
-              <div className="flex items-start mb-6">
-                <div className="w-4 h-4 bg-purple-500 rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-gray-800 mb-2">Volunteer Teacher</h3>
-                  <div className="flex items-center mb-4">
-                    <span className="text-xl font-semibold text-purple-600 mr-4">U&I Trust</span>
-                    <span className="text-gray-500">2021 – Present</span>
-                  </div>
                   
-                  <div className="ml-6 border-l-2 border-gray-200 pl-6">
-                    <h4 className="text-lg font-semibold text-gray-700 mb-3">Impact & Activities:</h4>
-                    <ul className="space-y-3 text-gray-600">
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span>Teaching English to students in grades 7–9</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span>Contributing to community development through education</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span>Empowering disadvantaged children and individuals across India</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span>Building stronger communities through mentorship and leadership</span>
-                      </li>
-                    </ul>
-                    
-                    <div className="mt-4">
-                      <h5 className="font-semibold text-gray-700 mb-2">Skills Developed:</h5>
-                      <div className="flex flex-wrap gap-2">
-                        <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">Teaching</span>
-                        <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">Mentorship</span>
-                        <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">Leadership</span>
-                        <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">Community Building</span>
+                  <div className="flex-1 min-w-0">
+                    <div className="pb-8">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-1">Summer Intern</h3>
+                      <div className="text-gray-700 font-medium mb-2">VOIS</div>
+                      <div className="text-gray-500 text-sm mb-4">Jun 2022 - Sep 2022 (3 m) • Pune, Maharashtra, India</div>
+                      
+                      <div className="space-y-3 text-gray-600 leading-relaxed">
+                        <div>
+                          <div className="font-medium text-gray-700 mb-2">Blood Bank Data Management Website:</div>
+                          <p className="text-sm">
+                            Developed a website to collect and manage blood bank data, exposing it to consumers via a user-friendly interface for quick access and transparency.
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -203,7 +189,7 @@ export default function Experience() {
           </div>
 
           {/* Download Resume Section */}
-          <div className="mt-12 text-center">
+          <div className="mt-12 text-left">
             <a 
               href="/resume.pdf"
               download="Daksha_Talekar_Resume.pdf"
@@ -217,7 +203,7 @@ export default function Experience() {
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
-              Download Full Resume
+              Download Resume
             </a>
           </div>
         </section>
@@ -258,6 +244,17 @@ export default function Experience() {
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+            </a>
+
+            <a
+              href="https://vercel.com/coding-ship-it"
+              target="_blank"
+              className="text-gray-400 hover:text-white transition-colors"
+              aria-label="Vercel"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 22.525H0l12-21.05 12 21.05z"/>
               </svg>
             </a>
           </div>
