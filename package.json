@@ -1,32 +1,27 @@
 {
-  "name": "craftzdog-homepage",
-  "version": "1.0.0",
-  "description": "Takuya's website",
+  "name": "portfolio",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "dev": "next dev -H 0.0.0.0",
-    "build": "next build",
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
     "start": "next start",
-    "prettier": "prettier --write .",
-    "lint": "next lint"
+    "lint": "eslint"
   },
-  "keywords": [],
-  "author": "Takuya Matsuyama",
-  "license": "MIT",
   "dependencies": {
-    "@chakra-ui/icons": "^1.1.7",
-    "@chakra-ui/react": "^1.8.8",
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
-    "framer-motion": "^6.3.0",
-    "next": "^15.5.2",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-icons": "^4.3.1",
-    "three": "^0.139.2"
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "next": "15.5.2"
   },
   "devDependencies": {
-    "eslint": "^8.13.0",
-    "eslint-config-next": "^12.1.5",
-    "prettier": "^2.6.2"
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@tailwindcss/postcss": "^4",
+    "tailwindcss": "^4",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.2",
+    "@eslint/eslintrc": "^3"
   }
 }
