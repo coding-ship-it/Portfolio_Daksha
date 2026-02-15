@@ -3,6 +3,43 @@ import AnimateOnScroll from '../components/AnimateOnScroll';
 
 const caseStudies = [
   {
+    id: 'merlon-fga',
+    category: 'System Design & Security',
+    title: 'Fine-Grained Authorization System (Merlon)',
+    subtitle: 'Google Zanzibar-inspired relation-based access control for sensitive data protection',
+    duration: 'Ongoing',
+    role: 'Full-Stack Owner',
+    problem: [
+      'Datasets contained sensitive attributes (PII, financial data) that required granular access control beyond simple dataset-level permissions.',
+      'Existing authorization was binary (access/no access) — no way to restrict specific attributes within an accessible dataset.',
+      'No TTL-based temporary access mechanism for time-limited data sharing with external clients.',
+      'UI lacked support for producers to configure fine-grained permissions during dataset onboarding.',
+    ],
+    approach: [
+      'Designed and implemented a Zanzibar-inspired relation-based authorization model using Merlon service for scalable ACL management.',
+      'Built two-tier access control: Dataset Level (non-sensitive attributes) and Attribute Level (sensitive attributes like email, PII).',
+      'Implemented strict_fine_grained_control flag in query layer — unauthorized clients get 403 FORBIDDEN when accessing restricted attributes.',
+      'Created TTL-based access controller allowing time-limited permissions for clientIds with automatic expiration.',
+      'Built producer-driven onboarding workflows where data owners define authorized clients and mark sensitive attributes.',
+      'Enforced token subject-based authorization (egaid:api: prefix) ensuring strict identity correctness across Identity V2/V3.',
+      'Developed full UI support for FGA configuration: authorized clients management, sensitive attribute marking, and access grants.',
+      'Implemented 5-minute cache with skip_fine_grained_cache flag for testing immediate permission changes.',
+    ],
+    impact: [
+      { metric: '2-Tier', label: 'Access Control', desc: 'Dataset + Attribute level authorization' },
+      { metric: 'TTL', label: 'Time-Based Access', desc: 'Automatic permission expiration' },
+      { metric: '100%', label: 'UI Coverage', desc: 'Full-stack feature ownership' },
+      { metric: '403', label: 'Strict Enforcement', desc: 'Unauthorized access blocked at query layer' },
+    ],
+    practice: [
+      'Created comprehensive backstage documentation for FGA feature including onboarding scenarios and API examples.',
+      'Built reusable authorization patterns that can be extended to future datasets and services.',
+      'Established best practices for token subject usage (V3 egaid:api: prefix) across the platform.',
+      'Delivered end-to-end feature from backend API to React UI, demonstrating full-stack ownership.',
+    ],
+    tags: ['System Design', 'Authorization', 'Google Zanzibar', 'Spring Boot', 'React', 'Security', 'Merlon'],
+  },
+  {
     id: 'api-migration',
     category: 'System Design & Migration',
     title: 'Data API SDK & UI Re-architecture',
@@ -257,20 +294,20 @@ export default function Experience() {
                   <div>
                     <h4 className="text-sm font-semibold text-white mb-3">Core Responsibilities</h4>
                     <ul className="space-y-2 text-sm text-zinc-400">
-                      <li className="flex gap-2"><span className="text-emerald-400">▹</span> Leading Data API SDK development for IDS platform</li>
-                      <li className="flex gap-2"><span className="text-emerald-400">▹</span> Built Zanzibar-inspired fine-grained authorization (Merlon)</li>
+                      <li className="flex gap-2"><span className="text-emerald-400">▹</span> Delivered 100+ issues with 97% completion rate (Jul 2023 – Nov 2025)</li>
+                      <li className="flex gap-2"><span className="text-emerald-400">▹</span> Full-stack owner for Fine-Grained Authorization (Merlon/Zanzibar)</li>
                       <li className="flex gap-2"><span className="text-emerald-400">▹</span> Architected CDC pipelines with Kafka, Flink, Iceberg</li>
-                      <li className="flex gap-2"><span className="text-emerald-400">▹</span> Backend lead for UI support; liaison with frontend teams</li>
+                      <li className="flex gap-2"><span className="text-emerald-400">▹</span> Primary UI owner across all deployment environments</li>
                       <li className="flex gap-2"><span className="text-emerald-400">▹</span> Increased method coverage by 40%+ through rigorous testing</li>
                     </ul>
                   </div>
                   <div>
                     <h4 className="text-sm font-semibold text-white mb-3">Key Projects</h4>
                     <ul className="space-y-2 text-sm text-zinc-400">
-                      <li className="flex gap-2"><span className="text-emerald-400">▹</span> Merlon: Relation-based authorization inspired by Google Zanzibar</li>
+                      <li className="flex gap-2"><span className="text-emerald-400">▹</span> Merlon FGA: Dataset + attribute-level ACL with TTL-based access</li>
                       <li className="flex gap-2"><span className="text-emerald-400">▹</span> DataSync: Real-time data synchronization pipeline</li>
-                      <li className="flex gap-2"><span className="text-emerald-400">▹</span> Iceberg table management via Schema Deploy</li>
-                      <li className="flex gap-2"><span className="text-emerald-400">▹</span> Flink apps with CI/CD automation & Docker base images</li>
+                      <li className="flex gap-2"><span className="text-emerald-400">▹</span> UI Migration: Direct API calls replacing deployment service</li>
+                      <li className="flex gap-2"><span className="text-emerald-400">▹</span> Flink CI/CD: Docker base images eliminating code duplication</li>
                     </ul>
                   </div>
                 </div>

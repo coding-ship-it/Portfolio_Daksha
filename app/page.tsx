@@ -3,10 +3,10 @@ import AnimateOnScroll from './components/AnimateOnScroll';
 import Navigation from './components/Navigation';
 
 const metrics = [
+  { value: '100+', label: 'Issues Delivered', context: '97% completion rate' },
   { value: '40%', label: 'Faster API Response', context: 'via architecture migration' },
   { value: '99.9%', label: 'UI Uptime', context: 'zero migration incidents' },
   { value: '75%', label: 'Fewer Support Tickets', context: 'improved reliability' },
-  { value: '90%', label: 'Code Reuse', context: 'automated testing framework' },
 ];
 
 const skills = {
@@ -19,6 +19,13 @@ const skills = {
 };
 
 const caseStudies = [
+  {
+    id: 'merlon-fga',
+    title: 'Fine-Grained Authorization System (Merlon)',
+    subtitle: 'Google Zanzibar-inspired access control at dataset & attribute level',
+    impact: ['Dataset + Attribute ACL', 'TTL-based access', 'Full-stack ownership'],
+    tags: ['System Design', 'Authorization', 'Spring Boot', 'React'],
+  },
   {
     id: 'api-migration',
     title: 'Data API SDK & UI Re-architecture',
