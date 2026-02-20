@@ -189,3 +189,41 @@ section {
   background: rgba(52, 211, 153, 0.3);
   color: #fff;
 }
+
+/* ─── Terminal Animation ──────────────────────────────────────────── */
+.terminal-window {
+  backdrop-filter: blur(12px);
+}
+
+.terminal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+  border-radius: 3px;
+}
+
+.terminal-line {
+  white-space: pre;
+  min-height: 1.5em;
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background: var(--accent);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink-cursor 1s step-end infinite;
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}

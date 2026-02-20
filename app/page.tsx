@@ -2,60 +2,189 @@
 
 import Navigation from './components/Navigation';
 import AnimateOnScroll from './components/AnimateOnScroll';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const skills = {
-  'Languages': ['Java', 'TypeScript', 'Python', 'SQL'],
-  'Frameworks': ['Spring Boot', 'Spring Framework', 'Next.js', 'React'],
-  'Data & Streaming': ['Apache Kafka', 'Apache Flink', 'Apache Iceberg', 'Dataproc'],
-  'Databases': ['BigQuery', 'Hive', 'PostgreSQL'],
-  'Tools & Cloud': ['GCP', 'Docker', 'Kubernetes', 'Spinnaker', 'GitHub Actions', 'Airflow'],
+  'Languages & Backend': ['Java', 'C++', 'Spring Boot', 'REST APIs', 'Microservices'],
+  'Data & Infrastructure': ['Apache Kafka', 'Apache Flink', 'Apache Iceberg', 'Elasticsearch', 'MongoDB', 'Scylla', 'Hive', 'Docker', 'Kubernetes'],
+  'DevOps & Tools': ['Git', 'Spinnaker', 'Jenkins', 'Mockito', 'Playwright', 'DataDog', 'Splunk', 'GitHub Actions'],
+  'Development Tools': ['IntelliJ IDEA', 'VS Code', 'JIRA', 'Confluence', 'Vault'],
 };
 
 const projects = [
   {
     id: 1,
-    title: 'Merlon - Fine-Grained Authorization System',
-    description: 'Zanzibar-inspired relation-based authorization model for scalable ACL management with producer-driven onboarding and dynamic access policies.',
-    tech: ['Java', 'Spring Boot', 'Authorization', 'Microservices'],
+    title: 'IDS Platform - Self-Serve Data Infrastructure',
+    description: 'Spearheaded development of a self-serve data platform enabling 28+ dataset onboarding via unified APIs across Lodging, Marketing, and Trips.',
+    tech: ['Java', 'Spring Boot', 'REST APIs', 'Microservices', 'BigQuery'],
     highlights: [
-      'Fine-grained control at dataset and attribute levels',
-      'Producer-driven onboarding workflows',
-      'Token subject-based authorization',
-      'Sensitive field protection (PII masking)'
+      'Onboarded 28+ datasets through unified APIs',
+      'Drove 80% adoption across Lodging, Marketing, and Trips',
+      'Redesigned backend APIs and Data API SDK UI flows',
+      'Achieved 99.9% UI uptime with zero migration incidents'
     ],
-    impact: 'Enabled secure, scalable data access across 100+ teams',
+    impact: 'Enabled single source of truth for critical business data across organization',
     year: '2024-2025'
   },
   {
     id: 2,
-    title: 'DataSync - Real-Time Pipeline',
-    description: 'CDC-based ingestion pipeline synchronizing datasets across multiple datastores using Kafka, Flink, and Apache Iceberg.',
-    tech: ['Apache Kafka', 'Apache Flink', 'Apache Iceberg', 'SQL'],
+    title: 'Merlon - Fine-Grained Authorization System',
+    description: 'Engineered Zanzibar-inspired relation-based authorization system for scalable ACL management with producer-driven onboarding.',
+    tech: ['Java', 'Spring Boot', 'Authorization', 'Microservices', 'GCP'],
     highlights: [
-      'Change Data Capture (CDC) ingestion',
-      'Snapshotting & rollback capabilities',
-      'Time-travel queries support',
-      'Separate PII/non-PII retention policies'
+      'Reduced policy misconfiguration incidents by 30%',
+      'Fine-grained control at dataset and attribute levels',
+      'Token subject-based authorization with privilege leak prevention',
+      'Dynamic access policy updates and revocation'
     ],
-    impact: 'Reduced data sync latency by 65%, improved compliance tracking',
-    year: '2024'
+    impact: 'Secured sensitive attribute access across 100+ team datasets',
+    year: '2024-2025'
   },
   {
     id: 3,
-    title: 'Blood Bank Data Consolidation Platform',
-    description: 'Web platform consolidating blood bank data across a city, connecting hospitals for quick access to life-saving resources.',
-    tech: ['Full Stack', 'PostgreSQL', 'REST APIs'],
+    title: 'DataSync - Real-Time CDC Pipeline',
+    description: 'Built real-time Change Data Capture synchronization using Kafka, Flink, and Apache Iceberg with advanced versioning and compliance.',
+    tech: ['Apache Kafka', 'Apache Flink', 'Apache Iceberg', 'Spark', 'GCP'],
     highlights: [
-      'Real-time blood inventory tracking',
-      'Hospital network integration',
-      'User-friendly search interface',
-      'Emergency alert system'
+      'Reduced sensitive data exposure by 40%',
+      'Implemented separate PII vs non-PII retention policies',
+      'Enabled advanced data versioning and time-travel queries',
+      'Automated Airflow DAGs for snapshot versioning'
     ],
-    impact: 'Connected 50+ hospitals, improved emergency response time by 40%',
-    year: '2022'
+    impact: 'Critical backbone for data governance and compliance across platform',
+    year: '2024'
   }
 ];
+
+/* ─── Terminal Animation Component ────────────────────────────────── */
+const terminalLines = [
+  { prompt: '~', cmd: 'git log --oneline -5', delay: 60 },
+  { prompt: '', cmd: 'a3f8e21 feat: onboard 28+ datasets via unified API', delay: 30, isOutput: true },
+  { prompt: '', cmd: 'b7c1d09 fix: zero-downtime Kafka migration pipeline', delay: 30, isOutput: true },
+  { prompt: '', cmd: 'e5a2f83 feat: Merlon RBAC with Vault integration', delay: 30, isOutput: true },
+  { prompt: '', cmd: 'd9b4c17 perf: 85% deployment reliability improvement', delay: 30, isOutput: true },
+  { prompt: '', cmd: 'f1e6d42 feat: Apache Iceberg PII retention policies', delay: 30, isOutput: true },
+  { prompt: '~', cmd: 'kubectl get pods -n ids-platform', delay: 50 },
+  { prompt: '', cmd: 'NAME                    READY   STATUS    RESTARTS', delay: 25, isOutput: true },
+  { prompt: '', cmd: 'ids-api-7d8f9c6b5-x2k4  1/1     Running   0', delay: 25, isOutput: true, accent: true },
+  { prompt: '', cmd: 'merlon-auth-5c4d3b-m9j1  1/1     Running   0', delay: 25, isOutput: true, accent: true },
+  { prompt: '', cmd: 'datasync-6f7e8d-p3q2     1/1     Running   0', delay: 25, isOutput: true, accent: true },
+  { prompt: '~', cmd: 'echo "Building the future, one commit at a time ☕"', delay: 45 },
+  { prompt: '', cmd: 'Building the future, one commit at a time ☕', delay: 25, isOutput: true, accent: true },
+];
+
+function TerminalAnimation() {
+  const [displayedLines, setDisplayedLines] = useState<{ text: string; isOutput?: boolean; accent?: boolean; isTyping?: boolean }[]>([]);
+  const [currentLineIdx, setCurrentLineIdx] = useState(0);
+  const [currentCharIdx, setCurrentCharIdx] = useState(0);
+  const terminalRef = useRef<HTMLDivElement>(null);
+  const [started, setStarted] = useState(false);
+
+  // Intersection observer to start animation when visible
+  useEffect(() => {
+    const el = terminalRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setStarted(true); obs.disconnect(); }
+    }, { threshold: 0.3 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  // Typing effect
+  useEffect(() => {
+    if (!started || currentLineIdx >= terminalLines.length) return;
+
+    const line = terminalLines[currentLineIdx];
+    const fullText = line.prompt ? `\u276f ${line.cmd}` : line.cmd;
+
+    if (line.isOutput) {
+      // Output lines appear instantly with a small delay
+      const timer = setTimeout(() => {
+        setDisplayedLines(prev => [...prev, { text: fullText, isOutput: true, accent: line.accent }]);
+        setCurrentLineIdx(i => i + 1);
+        setCurrentCharIdx(0);
+      }, 80);
+      return () => clearTimeout(timer);
+    }
+
+    if (currentCharIdx === 0) {
+      // Start a new command line with prompt
+      setDisplayedLines(prev => [...prev, { text: '', isTyping: true }]);
+    }
+
+    if (currentCharIdx < fullText.length) {
+      const timer = setTimeout(() => {
+        setDisplayedLines(prev => {
+          const copy = [...prev];
+          copy[copy.length - 1] = { text: fullText.slice(0, currentCharIdx + 1), isTyping: true };
+          return copy;
+        });
+        setCurrentCharIdx(c => c + 1);
+      }, line.delay);
+      return () => clearTimeout(timer);
+    } else {
+      // Finished typing this line
+      const timer = setTimeout(() => {
+        setDisplayedLines(prev => {
+          const copy = [...prev];
+          copy[copy.length - 1] = { text: fullText, isTyping: false };
+          return copy;
+        });
+        setCurrentLineIdx(i => i + 1);
+        setCurrentCharIdx(0);
+      }, 400);
+      return () => clearTimeout(timer);
+    }
+  }, [started, currentLineIdx, currentCharIdx]);
+
+  // Auto-scroll terminal
+  useEffect(() => {
+    if (terminalRef.current) {
+      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+    }
+  }, [displayedLines]);
+
+  return (
+    <div className="max-w-2xl mx-auto">
+      <div className="terminal-window rounded-xl overflow-hidden border border-[var(--border)] shadow-2xl shadow-emerald-500/5">
+        {/* Title bar */}
+        <div className="flex items-center gap-2 px-4 py-3 bg-[#1a1a2e] border-b border-[var(--border)]">
+          <div className="flex gap-2">
+            <div className="w-3 h-3 rounded-full bg-red-500/80" />
+            <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+            <div className="w-3 h-3 rounded-full bg-green-500/80" />
+          </div>
+          <span className="ml-3 text-xs text-[var(--text-muted)] font-mono">daksha@dev ~ zsh</span>
+        </div>
+        {/* Terminal body */}
+        <div
+          ref={terminalRef}
+          className="terminal-body bg-[#0d0d1a] px-5 py-4 font-mono text-sm leading-relaxed h-[280px] overflow-y-auto"
+        >
+          {displayedLines.map((line, i) => (
+            <div key={i} className={`terminal-line ${line.isOutput ? 'pl-0' : ''}`}>
+              {line.accent ? (
+                <span className="text-[var(--accent)]">{line.text}</span>
+              ) : line.isOutput ? (
+                <span className="text-[var(--text-muted)]">{line.text}</span>
+              ) : (
+                <span className="text-[var(--text-primary)]">{line.text}</span>
+              )}
+              {line.isTyping && <span className="terminal-cursor" />}
+            </div>
+          ))}
+          {currentLineIdx >= terminalLines.length && (
+            <div className="terminal-line">
+              <span className="text-[var(--text-primary)]">❯ </span>
+              <span className="terminal-cursor" />
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
   const [expandedProject, setExpandedProject] = useState<number | null>(null);
@@ -79,8 +208,7 @@ export default function Home() {
             </div>
 
             <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
-              <span className="gradient-text">Crafting Data Systems </span>
-              <span className="block text-[var(--accent)]">That Scale & Secure</span>
+              <span className="gradient-text">Software Developer</span>
             </h1>
 
             <p className="text-xl md:text-2xl text-[var(--text-secondary)] mb-12 max-w-3xl mx-auto leading-relaxed">
@@ -108,19 +236,9 @@ export default function Home() {
               </a>
             </div>
 
-            <div className="mt-16 pt-16 border-t border-[var(--border)] flex flex-col md:flex-row justify-center gap-12">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-[var(--accent)]">2+ years</div>
-                <div className="text-[var(--text-secondary)]">Industry Experience</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-[var(--accent)]">100+</div>
-                <div className="text-[var(--text-secondary)]">Supported Teams</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-[var(--accent)]">5+</div>
-                <div className="text-[var(--text-secondary)]">Major Systems Built</div>
-              </div>
+            {/* ─── Animated Terminal ─────────────────────────────── */}
+            <div className="mt-16 pt-16 border-t border-[var(--border)]">
+              <TerminalAnimation />
             </div>
           </AnimateOnScroll>
         </div>
@@ -140,19 +258,19 @@ export default function Home() {
             <AnimateOnScroll delay={100} className="md:col-span-2">
               <div className="space-y-6 text-[var(--text-secondary)] leading-relaxed">
                 <p>
-                  I'm a Software Engineer at Expedia Group, working on the Integrated Data Stores (IDS) platform — the backbone for some of Expedia's most critical data infrastructure. My focus is designing scalable, secure, and observable systems that enable teams across the organization to trust and leverage data confidently.
+                  I'm a Software Engineer at Expedia Group, building the Integrated Data Stores (IDS) platform that serves as the single source of truth for critical business data. My focus is designing secure, observable, and maintainable systems that enable thousands of engineers to confidently leverage data at scale.
                 </p>
 
                 <p>
-                  Beyond building systems, I'm deeply interested in authorization patterns, data governance, and system reliability. At Expedia, I've designed fine-grained access control models inspired by industry standards like Zanzibar, led real-time data synchronization pipelines, and increased code coverage by 40% through rigorous testing practices.
+                  At Expedia, I've engineered Merlon (a Zanzibar-inspired fine-grained authorization system), built DataSync (a real-time CDC pipeline with Kafka, Flink, and Iceberg), and led the IDS platform evolution to 80% adoption across core teams. I'm deeply invested in solving problems around data governance, system reliability, and cross-team collaboration.
                 </p>
 
                 <p>
-                  Earlier in my career, I interned at VOIS (Vodafone Intelligent Solutions), where I built a blood bank data consolidation platform that connected hospitals and improved emergency resource access. That experience reinforced my belief that good engineering solves real human problems.
+                  I'm passionate about systems thinking, distributed architecture, and building infrastructure that scales. Whether it's designing authorization models, optimizing data pipelines, or automating deployment workflows, I focus on engineering solutions that are bug-resistant, maintainable, and team-friendly.
                 </p>
 
                 <p>
-                  Outside of work, I mentor students through U&I Trust, a non-profit empowering disadvantaged communities in India. Teaching isn't just about academics — it's about building confidence, instilling ownership, and creating opportunities for the next generation.
+                  Outside of work, I volunteer with U&I Trust, mentoring and teaching students in underprivileged communities. For me, engineering and mentorship share the same essence — solving problems, creating opportunities, and making a lasting impact.
                 </p>
               </div>
             </AnimateOnScroll>
@@ -329,10 +447,10 @@ export default function Home() {
 
           <AnimateOnScroll delay={300} className="mt-16 pt-16 border-t border-[var(--border)] text-center">
             <a
-              href="http://experience"
+              href="/case-studies"
               className="inline-flex items-center px-8 py-4 bg-[var(--accent)] text-black font-semibold rounded-lg hover:bg-emerald-400 transition-all gap-2"
             >
-              View Full Experience
+              View Case Studies
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>

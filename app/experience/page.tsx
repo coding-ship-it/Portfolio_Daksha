@@ -10,9 +10,9 @@ export const metadata = {
 
 const educationData = [
   {
-    degree: "Bachelor of Engineering in Information Technology",
-    university: "Pune Institute of Computer Technology (PICT)",
-    year: "2019 - 2023",
+    degree: "B.Tech in Electronics and Telecommunication",
+    university: "MKSSS'S Cummins College Of Engineering, Pune",
+    year: "Aug 2020 – Mar 2023",
     gpa: "8.2 / 10",
     highlights: ["LPF Scholar 2020", "Consistent Dean's List", "Google Kickstart Participant 2022"]
   }
@@ -34,23 +34,23 @@ export default function Experience() {
 
             <div className="space-y-6 text-[var(--text-secondary)] leading-relaxed text-lg">
               <p>
-                Hi, I'm Daksha Talekar — a Software Engineer building scalable data systems at Expedia Group. I specialize in designing secure, observable, and maintainable infrastructure that enables thousands of engineers to leverage data confidently.
+                Hi, I'm Daksha Talekar — a Software Engineer at Expedia Group building scalable data systems and reliable infrastructure. I specialize in designing secure, observable data platforms that enable thousands of engineers to confidently leverage data at scale.
               </p>
 
               <p>
-                At Expedia, I work on the Integrated Data Stores (IDS) platform, the backbone for some of the company's most critical data infrastructure. My focus spans authorization patterns (inspired by Google Zanzibar), real-time data synchronization pipelines, and system reliability. I'm committed to writing rigorous tests, documenting systems deeply, and collaborating across teams to solve problems that matter.
+                At Expedia, I work on the Integrated Data Stores (IDS) platform, a foundational system serving as the single source of truth for critical business data. My contributions span across designing fine-grained authorization systems (Merlon - inspired by Google Zanzibar), building real-time data synchronization pipelines (DataSync), and implementing comprehensive CI/CD automation. I'm committed to writing rigorous tests, high-quality documentation, and collaborating across teams to solve problems that matter to the organization.
               </p>
 
               <p>
-                Before joining Expedia, I interned at VOIS (Vodafone Intelligent Solutions), where I built a blood bank data consolidation platform that connected 50+ hospitals and improved emergency response times. That summer taught me that good engineering solves real human problems — a principle that drives me every day.
+                My journey into tech was driven by a desire to create impact through well-engineered systems. I've worked on authorization patterns, data governance, stream processing with Kafka and Flink, and production-grade infrastructure. Whether designing for scale, security, or reliability, I focus on building systems that are not just technically sound but also maintainable and user-friendly for the teams who depend on them.
               </p>
 
               <p>
-                Outside of work, I volunteer with U&I Trust, a non-profit empowering disadvantaged communities across India. I teach English to students in grades 7–9, mentor aspiring engineers, and help build the next generation of problem-solvers. For me, mentorship and software engineering aren't separate — both are about creating opportunities, building confidence, and making lasting impact.
+                Outside of work, I volunteer with U&I Trust, a non-profit empowering disadvantaged communities across India. Teaching and mentoring young individuals is as important to me as engineering - both are about creating opportunities, building confidence, and making lasting impact.
               </p>
 
               <p>
-                I'm passionate about systems thinking, data governance, competitive programming, and continuous learning. When I'm not coding, you'll find me reading about distributed systems, exploring new technologies, or brainstorming with friends on potential projects.
+                I'm passionate about systems thinking, distributed systems, data engineering, competitive programming, and continuous learning. When not coding, you'll find me exploring new technologies, reading about system design patterns, or collaborating with peers on interesting problems.
               </p>
             </div>
           </AnimateOnScroll>
@@ -88,17 +88,39 @@ export default function Experience() {
                   </div>
 
                   <div className="space-y-6 mt-6">
-                    {/* Merlon Project */}
+                    {/* IDS Platform */}
                     <div className="border-l-2 border-[var(--accent-border)] pl-4">
-                      <h4 className="font-bold text-[var(--accent)] mb-2">Merlon — Fine-Grained Authorization System</h4>
+                      <h4 className="font-bold text-[var(--accent)] mb-2">IDS Platform - Self-Serve Data Infrastructure</h4>
                       <p className="text-[var(--text-secondary)] mb-3">
-                        Designed and implemented a Zanzibar-inspired relation-based authorization model for scalable ACL management across 100+ teams.
+                        Spearheaded development and enhancement of the self-serve data platform, enabling 28+ dataset onboarding via unified APIs.
                       </p>
                       <ul className="space-y-2 text-[var(--text-secondary)] text-sm">
-                        <li>✓ Fine-grained control at both dataset and attribute levels (e.g., email as PII)</li>
-                        <li>✓ Producer-driven onboarding workflows where data owners define authorized clients</li>
-                        <li>✓ Token subject-based authorization preventing privilege leaks across versions</li>
-                        <li>✓ Dynamic policy updates enabling real-time access revocation</li>
+                        <li>✓ Onboarded 28+ datasets with 80% adoption across Lodging, Marketing & Trips teams</li>
+                        <li>✓ Redesigned backend APIs and Data API SDK UI flows to simplify frontend integration</li>
+                        <li>✓ Achieved 99.9% UI uptime with zero migration incidents</li>
+                        <li>✓ Led cross-timezone collaboration, acted as SME for IDS features</li>
+                        <li>✓ Performance award for exceeding expectations over two quarters</li>
+                      </ul>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        <span className="skill-tag text-xs">Java</span>
+                        <span className="skill-tag text-xs">Spring Boot</span>
+                        <span className="skill-tag text-xs">REST APIs</span>
+                        <span className="skill-tag text-xs">Microservices</span>
+                      </div>
+                    </div>
+
+                    {/* Merlon Project */}
+                    <div className="border-l-2 border-[var(--accent-border)] pl-4">
+                      <h4 className="font-bold text-[var(--accent)] mb-2">Merlon — Zanzibar-Inspired Authorization System</h4>
+                      <p className="text-[var(--text-secondary)] mb-3">
+                        Engineered relation-based fine-grained authorization system for scalable ACL management with 30% reduction in policy misconfiguration incidents.
+                      </p>
+                      <ul className="space-y-2 text-[var(--text-secondary)] text-sm">
+                        <li>✓ Reduced policy misconfiguration incidents by 30%</li>
+                        <li>✓ Fine-grained control at both dataset and attribute levels</li>
+                        <li>✓ Token subject-based authorization preventing privilege leaks</li>
+                        <li>✓ Producer-driven onboarding workflows for data owners</li>
+                        <li>✓ Dynamic access policy updates and revocation support</li>
                       </ul>
                       <div className="mt-3 flex flex-wrap gap-2">
                         <span className="skill-tag text-xs">Java</span>
@@ -110,33 +132,55 @@ export default function Experience() {
 
                     {/* DataSync Project */}
                     <div className="border-l-2 border-[var(--accent-border)] pl-4">
-                      <h4 className="font-bold text-[var(--accent)] mb-2">DataSync — Real-Time Data Synchronization Pipeline</h4>
+                      <h4 className="font-bold text-[var(--accent)] mb-2">DataSync — Real-Time CDC Synchronization Pipeline</h4>
                       <p className="text-[var(--text-secondary)] mb-3">
-                        Built a CDC-based ingestion pipeline using Kafka, Flink, and Apache Iceberg to synchronize datasets across multiple datastores.
+                        Built real-time Change Data Capture pipeline using Kafka, Flink, and Apache Iceberg with 40% reduction in sensitive data exposure.
                       </p>
                       <ul className="space-y-2 text-[var(--text-secondary)] text-sm">
-                        <li>✓ Change Data Capture (CDC) ingestion with snapshotting and rollback capabilities</li>
-                        <li>✓ Time-travel queries in Iceberg for historical data analysis</li>
-                        <li>✓ Separate retention policies for PII vs non-PII data (compliance-first)</li>
-                        <li>✓ Automated daily Airflow DAGs for snapshot versioning and tagging</li>
+                        <li>✓ Reduced sensitive data exposure by 40%</li>
+                        <li>✓ Implemented separate PII vs non-PII retention policies for compliance</li>
+                        <li>✓ Enabled advanced data versioning and time-travel queries</li>
+                        <li>✓ Automated Airflow DAGs for snapshot versioning and tagging</li>
+                        <li>✓ Critical backbone for data governance across platform</li>
                       </ul>
                       <div className="mt-3 flex flex-wrap gap-2">
                         <span className="skill-tag text-xs">Apache Kafka</span>
                         <span className="skill-tag text-xs">Apache Flink</span>
                         <span className="skill-tag text-xs">Apache Iceberg</span>
-                        <span className="skill-tag text-xs">Airflow</span>
+                        <span className="skill-tag text-xs">Spark</span>
                       </div>
                     </div>
 
-                    {/* Other Contributions */}
+                    {/* CI/CD & Testing */}
                     <div className="border-l-2 border-[var(--accent-border)] pl-4">
-                      <h4 className="font-bold text-[var(--accent)] mb-2">Additional Contributions</h4>
+                      <h4 className="font-bold text-[var(--accent)] mb-2">CI/CD Automation & Comprehensive Testing</h4>
+                      <p className="text-[var(--text-secondary)] mb-3">
+                        Automated CI/CD pipelines and developed testing frameworks resulting in significant efficiency gains.
+                      </p>
                       <ul className="space-y-2 text-[var(--text-secondary)] text-sm">
-                        <li>📈 <strong>Code Coverage:</strong> Increased method coverage by 40% through rigorous unit & integration testing</li>
-                        <li>🔧 <strong>Flink Applications:</strong> Developed Flink apps using Dataproc, automated deployment with Spinnaker, GitHub Actions</li>
-                        <li>🗂️ <strong>Iceberg Tables:</strong> Created Hive & Iceberg tables via Schema Deploy with Git-managed HQL</li>
-                        <li>🎨 <strong>Backend & UI Lead:</strong> Enhanced Java (Spring Boot) APIs, served as liaison between backend and frontend teams</li>
-                        <li>🏗️ <strong>Microservices:</strong> Implemented Spring Boot endpoints, led code base migration for cost optimization</li>
+                        <li>📈 <strong>Flink Automation:</strong> Reduced deployment effort by 40%, onboarding time from 1 week to 1 day with GitHub Actions & Spinnaker</li>
+                        <li>🧪 <strong>Integration Framework:</strong> Built unified testing framework for batch & GDPR processors, improved debugging speed by 75%</li>
+                        <li>🎨 <strong>Playwright UI Tests:</strong> Automated UI testing, reduced manual testing time by 2 days per release, 85% improvement in successful deployments</li>
+                      </ul>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        <span className="skill-tag text-xs">GitHub Actions</span>
+                        <span className="skill-tag text-xs">Spinnaker</span>
+                        <span className="skill-tag text-xs">Playwright</span>
+                        <span className="skill-tag text-xs">Spark</span>
+                      </div>
+                    </div>
+
+                    {/* Production Support */}
+                    <div className="border-l-2 border-[var(--accent-border)] pl-4">
+                      <h4 className="font-bold text-[var(--accent)] mb-2">Production Excellence & P1 Incident Management</h4>
+                      <p className="text-[var(--text-secondary)] mb-3">
+                        Handled critical production issues and maintained high reliability standards.
+                      </p>
+                      <ul className="space-y-2 text-[var(--text-secondary)] text-sm">
+                        <li>✓ Managed P1 production issue for consumer dataset availability</li>
+                        <li>✓ Coordinated with replicator, NoSQL, and Elasticsearch teams</li>
+                        <li>✓ Defined clear MTTD (3–5 hours) and MTTR (12 hours) benchmarks</li>
+                        <li>✓ Successfully restored data with zero incidents post-resolution</li>
                       </ul>
                     </div>
                   </div>
@@ -152,52 +196,47 @@ export default function Experience() {
                       <span className="skill-tag">GCP</span>
                       <span className="skill-tag">REST APIs</span>
                       <span className="skill-tag">Microservices</span>
+                      <span className="skill-tag">GitHub Actions</span>
+                      <span className="skill-tag">Spinnaker</span>
+                      <span className="skill-tag">DataDog</span>
                     </div>
                   </div>
                 </div>
               </AnimateOnScroll>
 
-              {/* VOIS Internship */}
-              <AnimateOnScroll delay={200} className="relative pl-16">
+              {/* UI & Frontend Support */}
+              <AnimateOnScroll delay={300} className="relative pl-16">
                 <div className="timeline-dot-muted absolute -left-6 top-2" />
 
                 <div className="card p-8">
                   <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
                     <div>
-                      <h3 className="text-3xl font-bold mb-2">Summer Intern</h3>
-                      <div className="text-[var(--text-secondary)] font-semibold text-lg mb-1">VOIS (Vodafone Intelligent Solutions)</div>
-                      <div className="text-[var(--text-muted)]">Pune, India</div>
-                    </div>
-                    <div className="text-right mt-4 md:mt-0">
-                      <div className="text-sm font-mono text-[var(--text-muted)] bg-[var(--bg-primary)] px-3 py-1 rounded inline-block">
-                        Jun – Sep 2022 (3 months)
-                      </div>
+                      <h3 className="text-2xl font-bold mb-2">UI & Frontend Leadership</h3>
+                      <div className="text-[var(--text-secondary)] font-semibold text-lg mb-1">Supporting Product Development</div>
+                      <div className="text-[var(--text-muted)]">Cross-functional collaboration with Design & Frontend teams</div>
                     </div>
                   </div>
 
                   <div className="space-y-4 mt-6">
                     <div>
-                      <h4 className="font-bold text-[var(--accent)] mb-2">Blood Bank Data Consolidation Platform</h4>
-                      <p className="text-[var(--text-secondary)] mb-4">
-                        Developed a web platform consolidating blood bank data across a city, connecting hospitals and enabling rapid access to life-saving resources.
+                      <p className="text-[var(--text-secondary)] mb-4 leading-relaxed">
+                        Served as backend lead for UI support, working closely with product and frontend teams to simplify integration and enhance user experience.
                       </p>
                       <ul className="space-y-2 text-[var(--text-secondary)] text-sm">
-                        <li>✓ Real-time blood inventory tracking across 50+ hospital networks</li>
-                        <li>✓ User-friendly search interface for quick resource discovery</li>
-                        <li>✓ Automated emergency alert system for critical shortages</li>
-                        <li>✓ Improved emergency response time by 40%</li>
+                        <li>✓ Redesigned 15+ Java (Spring Boot) APIs to simplify frontend integration patterns</li>
+                        <li>✓ Eliminated deployment-service bottleneck through API redesign and workflow optimization</li>
+                        <li>✓ Implemented Playwright-based automated UI tests, cutting manual testing time by 2 days per release</li>
+                        <li>✓ Increased successful UI feature deployments by 85% through improved API stability</li>
+                        <li>✓ Led cross-timezone collaboration with UI and consumer teams for requirement clarification</li>
+                        <li>✓ Acted as SME for IDS backend capabilities, documenting flows & integration patterns</li>
                       </ul>
                       <div className="mt-3 flex flex-wrap gap-2">
-                        <span className="skill-tag text-xs">Full Stack</span>
-                        <span className="skill-tag text-xs">PostgreSQL</span>
+                        <span className="skill-tag text-xs">Spring Boot</span>
                         <span className="skill-tag text-xs">REST APIs</span>
-                        <span className="skill-tag text-xs">Frontend</span>
+                        <span className="skill-tag text-xs">Playwright</span>
+                        <span className="skill-tag text-xs">UI Automation</span>
                       </div>
                     </div>
-
-                    <p className="text-[var(--text-secondary)] italic pt-2 border-t border-[var(--border)]">
-                      "This internship reinforced my belief that engineering solves real human problems. The impact of tech on people's lives became crystal clear."
-                    </p>
                   </div>
                 </div>
               </AnimateOnScroll>
@@ -253,10 +292,10 @@ export default function Experience() {
 
           <div className="grid md:grid-cols-2 gap-6">
             {[
-              { category: "Languages", items: ['Java', 'TypeScript', 'Python', 'SQL', 'JavaScript'] },
-              { category: "Frameworks & Libraries", items: ['Spring Boot', 'Spring Framework', 'Next.js', 'React', 'REST APIs'] },
-              { category: "Data & Stream Processing", items: ['Apache Kafka', 'Apache Flink', 'Apache Iceberg', 'BigQuery', 'Hive'] },
-              { category: "DevOps & Tools", items: ['Docker', 'Kubernetes', 'GCP', 'Spinnaker', 'GitHub Actions', 'Airflow', 'Vault'] },
+              { category: "Languages & Backend", items: ['Java', 'C++', 'Spring Boot', 'REST APIs', 'Microservices'] },
+              { category: "Data & Infrastructure", items: ['Apache Kafka', 'Apache Flink', 'Apache Iceberg', 'Elasticsearch', 'MongoDB', 'Scylla', 'Hive'] },
+              { category: "DevOps & Cloud", items: ['Docker', 'Kubernetes', 'Git', 'Spinnaker', 'Jenkins', 'GitHub Actions', 'Vault'] },
+              { category: "Testing & Monitoring", items: ['Mockito', 'Playwright', 'DataDog', 'Splunk', 'JIRA', 'Confluence'] },
             ].map((skillGroup, idx) => (
               <AnimateOnScroll key={skillGroup.category} delay={idx * 100} className="card p-6">
                 <h3 className="font-bold text-[var(--accent)] mb-4">{skillGroup.category}</h3>
@@ -283,11 +322,11 @@ export default function Experience() {
 
           <div className="space-y-6">
             {[
-              { icon: '⭐', title: 'High Five Awardee', org: 'Expedia Group', desc: 'Recognized for exceptional performance and contributions to platform reliability' },
-              { icon: '🏆', title: 'Travel Award', org: 'Expedia Group', desc: 'Outstanding contribution to data store platform and team impact' },
+              { icon: '⭐', title: 'High Five Award', org: 'Expedia Group', desc: 'Recognized for impactful contributions on the IDS project and consistently exceeding team expectations' },
+              { icon: '🏆', title: 'Travel Award', org: 'Expedia Group', desc: 'Recognition for outstanding performance and contributions to platform reliability' },
               { icon: '📚', title: 'LPF Scholar', org: 'Academic Excellence 2020', desc: 'Awarded for outstanding academic performance and leadership potential' },
               { icon: '🎯', title: 'Google Kickstart Participant', org: '2022', desc: 'Competitive programming — advanced problem-solving & algorithmic thinking' },
-              { icon: '👨‍🏫', title: 'Volunteer Educator', org: 'U&I Trust', desc: 'Teaching English to grades 7–9, empowering disadvantaged communities' },
+              { icon: '👨‍🏫', title: 'Volunteer Educator', org: 'U&I Trust', desc: 'Teaching and mentoring, empowering disadvantaged communities' },
             ].map((award, idx) => (
               <AnimateOnScroll key={award.title} delay={idx * 100} className="card p-6 flex gap-4">
                 <div className="text-3xl">{award.icon}</div>
