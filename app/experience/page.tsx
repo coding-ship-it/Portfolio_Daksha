@@ -12,7 +12,7 @@ const educationData = [
   {
     degree: "B.Tech in Electronics and Telecommunication",
     university: "MKSSS'S Cummins College Of Engineering, Pune",
-    year: "Aug 2020 – Mar 2023",
+    year: "Aug 2020 – May 2023 (Lateral Entry)",
     gpa: "8.2 / 10",
     highlights: ["LPF Scholar 2020", "Consistent Dean's List", "Google Kickstart Participant 2022"]
   }

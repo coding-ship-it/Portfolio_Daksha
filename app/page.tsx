@@ -194,6 +194,7 @@ export default function Home() {
       <Navigation isHomePage={true} />
 
       {/* ─── HERO SECTION ───────────────────────────────────────────────── */}
+      <main id="main-content">
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         {/* Background elements */}
         <div className="absolute inset-0 bg-grid pointer-events-none" />
@@ -203,16 +204,18 @@ export default function Home() {
         <div className="relative z-10 max-w-4xl mx-auto px-6">
           <AnimateOnScroll className="text-center">
             <div className="mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--accent-dim)] border border-[var(--accent-border)]">
-              <span className="text-[var(--accent)] text-sm font-medium">Welcome to my portfolio</span>
-              <span className="text-xl">👋</span>
+              <span className="text-[var(--accent)] text-sm font-medium">Software Engineer at Expedia Group</span>
             </div>
 
-            <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
-              <span className="gradient-text">Software Developer</span>
+            <h1 className="text-6xl md:text-8xl font-bold mb-4 leading-tight">
+              <span className="gradient-text">Daksha Talekar</span>
             </h1>
+            <h2 className="text-2xl md:text-3xl font-medium text-[var(--text-secondary)] mb-8">
+              Software Developer
+            </h2>
 
             <p className="text-xl md:text-2xl text-[var(--text-secondary)] mb-12 max-w-3xl mx-auto leading-relaxed">
-              Software Engineer at Expedia building distributed data platforms. Passionate about systems design, security, and mentoring the next generation of engineers.
+              I build data systems that <span className="text-[var(--accent)] font-semibold">100+ teams</span> at Expedia depend on daily — from fine-grained authorization to real-time CDC pipelines.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -258,38 +261,40 @@ export default function Home() {
             <AnimateOnScroll delay={100} className="md:col-span-2">
               <div className="space-y-6 text-[var(--text-secondary)] leading-relaxed">
                 <p>
-                  I'm a Software Engineer at Expedia Group, building the Integrated Data Stores (IDS) platform that serves as the single source of truth for critical business data. My focus is designing secure, observable, and maintainable systems that enable thousands of engineers to confidently leverage data at scale.
+                  I'm a Software Engineer at Expedia Group, building the Integrated Data Stores (IDS) platform — the single source of truth for critical business data. I've engineered Merlon (a Zanzibar-inspired authorization system), built DataSync (a real-time CDC pipeline with Kafka, Flink, and Iceberg), and led the IDS platform to 80% adoption across core teams.
                 </p>
 
                 <p>
-                  At Expedia, I've engineered Merlon (a Zanzibar-inspired fine-grained authorization system), built DataSync (a real-time CDC pipeline with Kafka, Flink, and Iceberg), and led the IDS platform evolution to 80% adoption across core teams. I'm deeply invested in solving problems around data governance, system reliability, and cross-team collaboration.
-                </p>
-
-                <p>
-                  I'm passionate about systems thinking, distributed architecture, and building infrastructure that scales. Whether it's designing authorization models, optimizing data pipelines, or automating deployment workflows, I focus on engineering solutions that are bug-resistant, maintainable, and team-friendly.
-                </p>
-
-                <p>
-                  Outside of work, I volunteer with U&I Trust, mentoring and teaching students in underprivileged communities. For me, engineering and mentorship share the same essence — solving problems, creating opportunities, and making a lasting impact.
+                  I focus on systems that are secure, observable, and team-friendly. Outside work, I volunteer with U&I Trust, mentoring students in underprivileged communities — because engineering and mentorship both come down to creating opportunities and lasting impact.
                 </p>
               </div>
             </AnimateOnScroll>
 
             <AnimateOnScroll delay={200} className="md:col-span-1">
-              <div className="card p-8 sticky top-32">
-                <div className="text-sm font-semibold text-[var(--accent)] mb-6">KEY INTERESTS</div>
-                <div className="space-y-4">
-                  <div>
-                    <div className="font-semibold mb-1">Systems Design</div>
-                    <div className="text-sm text-[var(--text-secondary)]">Scalable, observable architecture</div>
-                  </div>
-                  <div>
-                    <div className="font-semibold mb-1">Data Governance</div>
-                    <div className="text-sm text-[var(--text-secondary)]">Authorization & compliance</div>
-                  </div>
-                  <div>
-                    <div className="font-semibold mb-1">Mentorship</div>
-                    <div className="text-sm text-[var(--text-secondary)]">Growing the next generation</div>
+              <div className="card overflow-hidden sticky top-32">
+                <div className="aspect-[4/5] relative">
+                  <img
+                    src="/coding.jpeg"
+                    alt="Daksha Talekar"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-card)] via-transparent to-transparent" />
+                </div>
+                <div className="p-6">
+                  <div className="text-sm font-semibold text-[var(--accent)] mb-4">KEY INTERESTS</div>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[var(--accent)]">▸</span>
+                      <span className="text-sm">Distributed Systems</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[var(--accent)]">▸</span>
+                      <span className="text-sm">Data Governance</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[var(--accent)]">▸</span>
+                      <span className="text-sm">Mentorship</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -342,11 +347,11 @@ export default function Home() {
               <AnimateOnScroll key={project.id} delay={idx * 100}>
                 <div className="card p-8 cursor-pointer" onClick={() => setExpandedProject(expandedProject === project.id ? null : project.id)}>
                   <div className="flex justify-between items-start mb-4">
-                    <div>
+                    <div className="flex-1">
                       <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
                       <p className="text-[var(--text-secondary)] mb-4">{project.description}</p>
                     </div>
-                    <span className="text-xs font-mono text-[var(--text-muted)] bg-[var(--bg-primary)] px-3 py-1 rounded">
+                    <span className="text-xs font-mono text-[var(--text-muted)] bg-[var(--bg-primary)] px-3 py-1 rounded ml-4 shrink-0">
                       {project.year}
                     </span>
                   </div>
@@ -359,19 +364,26 @@ export default function Home() {
                     ))}
                   </div>
 
+                  {/* Always show first 2 highlights as preview */}
+                  <ul className="space-y-2 mb-2">
+                    {project.highlights.slice(0, 2).map((highlight) => (
+                      <li key={highlight} className="flex gap-2 text-[var(--text-secondary)] text-sm">
+                        <span className="text-[var(--accent)]">•</span>
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+
                   {expandedProject === project.id && (
-                    <div className="mt-6 pt-6 border-t border-[var(--border)] space-y-4">
-                      <div>
-                        <h4 className="font-semibold text-[var(--accent)] mb-3">Key Highlights</h4>
-                        <ul className="space-y-2">
-                          {project.highlights.map((highlight) => (
-                            <li key={highlight} className="flex gap-2 text-[var(--text-secondary)]">
-                              <span className="text-[var(--accent)]">•</span>
-                              <span>{highlight}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                    <div className="mt-4 pt-4 border-t border-[var(--border)] space-y-4 animate-fade-in">
+                      <ul className="space-y-2">
+                        {project.highlights.slice(2).map((highlight) => (
+                          <li key={highlight} className="flex gap-2 text-[var(--text-secondary)] text-sm">
+                            <span className="text-[var(--accent)]">•</span>
+                            <span>{highlight}</span>
+                          </li>
+                        ))}
+                      </ul>
                       <div className="pt-4 border-t border-[var(--border)]">
                         <div className="font-semibold text-[var(--accent)] mb-2">Impact</div>
                         <p className="text-[var(--text-secondary)]">{project.impact}</p>
@@ -379,8 +391,8 @@ export default function Home() {
                     </div>
                   )}
 
-                  <div className="mt-4 text-[var(--text-muted)] text-sm">
-                    {expandedProject === project.id ? 'Click to collapse' : 'Click to expand'}
+                  <div className="mt-4 flex items-center gap-2 text-[var(--accent)] text-sm font-medium">
+                    <span>{expandedProject === project.id ? 'Show less' : 'See all highlights →'}</span>
                   </div>
                 </div>
               </AnimateOnScroll>
@@ -425,23 +437,7 @@ export default function Home() {
                 </div>
               </AnimateOnScroll>
 
-              {/* VOIS */}
-              <AnimateOnScroll delay={200}>
-                <div className="relative pl-16">
-                  <div className="timeline-dot-muted absolute -left-6 top-2" />
-                  <div>
-                    <div className="flex justify-between items-start mb-2">
-                      <div>
-                        <h3 className="text-xl font-bold">Summer Intern</h3>
-                        <div className="text-[var(--text-secondary)] font-semibold">VOIS (Vodafone Intelligent Solutions)</div>
-                      </div>
-                      <span className="text-sm text-[var(--text-muted)]">Jun – Sep 2022</span>
-                    </div>
-                    <p className="text-[var(--text-secondary)] mb-3">Pune, India</p>
-                    <p className="text-[var(--text-secondary)]">🩸 Developed blood bank data consolidation platform connecting 50+ hospitals for life-saving resource access</p>
-                  </div>
-                </div>
-              </AnimateOnScroll>
+
             </div>
           </div>
 
@@ -611,6 +607,8 @@ export default function Home() {
           </AnimateOnScroll>
         </div>
       </section>
+
+      </main>
 
       {/* ─── FOOTER ───────────────────────────────────────────────────────────────── */}
       <footer className="py-12 px-6 bg-[var(--bg-primary)] border-t border-[var(--border)]">
