@@ -1,67 +1,191 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
+/* ─── Design Tokens ──────────────────────────────────────────────── */
 :root {
-  --background: #f0f2f5;
-  --foreground: #2d3748;
-  --gray-50: #f7f8fc;
-  --gray-100: #edf1f7;
-  --gray-200: #e2e8f0;
-  --gray-300: #cbd5e0;
-  --gray-400: #a0aec0;
-  --gray-500: #718096;
-  --gray-600: #4a5568;
-  --gray-700: #2d3748;
-  --gray-800: #1a202c;
-  --gray-900: #171923;
-  --blue-50: #ebf8ff;
-  --blue-100: #bee3f8;
-  --blue-200: #90cdf4;
-  --blue-500: #4299e1;
-  --blue-600: #3182ce;
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #111118;
+  --bg-card: #16161e;
+  --bg-card-hover: #1c1c26;
+  --border: #1e1e2a;
+  --border-hover: #2a2a3a;
+  --text-primary: #e4e4e7;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --accent: #34d399;
+  --accent-dim: rgba(52, 211, 153, 0.1);
+  --accent-border: rgba(52, 211, 153, 0.2);
+  --accent-glow: rgba(52, 211, 153, 0.15);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: 'Cormorant Garamond', serif;
-  line-height: 1.6;
-}
-
-/* Smooth scrolling */
+/* ─── Base ────────────────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
 }
 
-/* Ensure sections account for fixed header */
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 section {
   scroll-margin-top: 80px;
 }
 
-/* Custom scrollbar with gray theme */
-::-webkit-scrollbar {
-  width: 6px;
+/* ─── Scrollbar ───────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: #27272a; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+
+/* ─── Glass Navigation ────────────────────────────────────────────── */
+.glass-nav {
+  background: rgba(10, 10, 15, 0.8);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border);
 }
 
-::-webkit-scrollbar-track {
-  background: var(--gray-100);
+/* ─── Glow Effects ────────────────────────────────────────────────── */
+.glow-emerald {
+  box-shadow: 0 0 40px var(--accent-glow), 0 0 80px rgba(52, 211, 153, 0.05);
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--gray-300);
-  border-radius: 3px;
+.glow-line {
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--gray-400);
+/* ─── Card System ─────────────────────────────────────────────────── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Gradient backgrounds */
-.gradient-gray {
-  background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+.card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
-.gradient-gray-dark {
-  background: linear-gradient(135deg, var(--gray-600) 0%, var(--gray-700) 100%);
+/* ─── Skill Tag ───────────────────────────────────────────────────── */
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+}
+
+.skill-tag:hover {
+  border-color: var(--accent-border);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+/* ─── Section Label ───────────────────────────────────────────────── */
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ─── Timeline ────────────────────────────────────────────────────── */
+.timeline-line {
+  position: absolute;
+  left: 23px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent), var(--border), transparent);
+}
+
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+  position: relative;
+  z-index: 2;
+}
+
+.timeline-dot-muted {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--border);
+  border: 2px solid #27272a;
+  position: relative;
+  z-index: 2;
+}
+
+/* ─── Gradient Text ───────────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #e4e4e7 0%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-accent {
+  background: linear-gradient(135deg, var(--accent) 0%, #6ee7b7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Subtle grid background ──────────────────────────────────────── */
+.bg-grid {
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ─── Animations ──────────────────────────────────────────────────── */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 12px var(--accent-glow); }
+  50% { box-shadow: 0 0 24px var(--accent-glow), 0 0 48px rgba(52, 211, 153, 0.05); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* ─── Hero gradient orb ───────────────────────────────────────────── */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* ─── Misc ────────────────────────────────────────────────────────── */
+::selection {
+  background: rgba(52, 211, 153, 0.3);
+  color: #fff;
 }

@@ -1,386 +1,518 @@
-import Image from 'next/image';
+'use client';
+
+import Navigation from './components/Navigation';
+import AnimateOnScroll from './components/AnimateOnScroll';
+import { useState } from 'react';
+
+const skills = {
+  'Languages': ['Java', 'TypeScript', 'Python', 'SQL'],
+  'Frameworks': ['Spring Boot', 'Spring Framework', 'Next.js', 'React'],
+  'Data & Streaming': ['Apache Kafka', 'Apache Flink', 'Apache Iceberg', 'Dataproc'],
+  'Databases': ['BigQuery', 'Hive', 'PostgreSQL'],
+  'Tools & Cloud': ['GCP', 'Docker', 'Kubernetes', 'Spinnaker', 'GitHub Actions', 'Airflow'],
+};
+
+const projects = [
+  {
+    id: 1,
+    title: 'Merlon - Fine-Grained Authorization System',
+    description: 'Zanzibar-inspired relation-based authorization model for scalable ACL management with producer-driven onboarding and dynamic access policies.',
+    tech: ['Java', 'Spring Boot', 'Authorization', 'Microservices'],
+    highlights: [
+      'Fine-grained control at dataset and attribute levels',
+      'Producer-driven onboarding workflows',
+      'Token subject-based authorization',
+      'Sensitive field protection (PII masking)'
+    ],
+    impact: 'Enabled secure, scalable data access across 100+ teams',
+    year: '2024-2025'
+  },
+  {
+    id: 2,
+    title: 'DataSync - Real-Time Pipeline',
+    description: 'CDC-based ingestion pipeline synchronizing datasets across multiple datastores using Kafka, Flink, and Apache Iceberg.',
+    tech: ['Apache Kafka', 'Apache Flink', 'Apache Iceberg', 'SQL'],
+    highlights: [
+      'Change Data Capture (CDC) ingestion',
+      'Snapshotting & rollback capabilities',
+      'Time-travel queries support',
+      'Separate PII/non-PII retention policies'
+    ],
+    impact: 'Reduced data sync latency by 65%, improved compliance tracking',
+    year: '2024'
+  },
+  {
+    id: 3,
+    title: 'Blood Bank Data Consolidation Platform',
+    description: 'Web platform consolidating blood bank data across a city, connecting hospitals for quick access to life-saving resources.',
+    tech: ['Full Stack', 'PostgreSQL', 'REST APIs'],
+    highlights: [
+      'Real-time blood inventory tracking',
+      'Hospital network integration',
+      'User-friendly search interface',
+      'Emergency alert system'
+    ],
+    impact: 'Connected 50+ hospitals, improved emergency response time by 40%',
+    year: '2022'
+  }
+];
 
 export default function Home() {
+  const [expandedProject, setExpandedProject] = useState<number | null>(null);
+
   return (
-    <div className="min-h-screen">
-      {/* Navigation Header */}
-      <header className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm border-b border-gray-200 z-50">
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          <div className="flex justify-between items-center">
-            <a href="#home" className="flex items-center space-x-3 text-xl font-bold text-gray-800 hover:text-gray-600 transition-colors">
-              <Image 
-                src="/coding.jpeg" 
-                alt="Coding" 
-                width={32}
-                height={32}
-                className="rounded-full object-cover opacity-80 mix-blend-multiply"
-              />
-              <span>Daksha Talekar</span>
-            </a>
-            <nav className="hidden md:flex space-x-8">
-              <a href="#home" className="text-gray-600 hover:text-gray-800 transition-colors font-medium">
-                Home
-              </a>
-              <a href="#about" className="text-gray-600 hover:text-gray-800 transition-colors font-medium">
-                About Me
-              </a>
-              <a href="#recommendations" className="text-gray-600 hover:text-gray-800 transition-colors font-medium">
-                Recommendations
-              </a>
-              <a href="#projects" className="text-gray-600 hover:text-gray-800 transition-colors font-medium">
-                Projects
-              </a>
-              <a href="#awards" className="text-gray-600 hover:text-gray-800 transition-colors font-medium">
-                Awards
-              </a>
-              <a href="#contact" className="text-gray-600 hover:text-gray-800 transition-colors font-medium">
-                Contact
-              </a>
-            </nav>
-            
-            {/* Mobile menu button */}
-            <button className="md:hidden text-gray-600 hover:text-gray-800">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
+      <Navigation isHomePage={true} />
 
-      {/* Hero Section */}
-      <section id="home" className="flex flex-col items-start justify-center min-h-screen px-6 bg-gray-100 pt-20">
-        <div className="max-w-4xl mx-auto w-full">
-          <h1 className="text-8xl md:text-9xl font-black mb-6 tracking-tight">
-            <span className="block text-gray-800">DAKSHA</span>
-            <span className="block text-gray-800" style={{ marginLeft: '20rem' }}>TALEKAR</span>
-          </h1>
-          <div className="text-center">
-            <p className="text-xl md:text-2xl text-gray-700 mb-8 font-medium">
-              SOFTWARE DEVELOPMENT ENGINEER - I
-            </p>
-          </div>
-          <div className="space-y-2">
-            <p className="text-lg text-gray-600 max-w-2xl leading-relaxed">
-              At Expedia, I craft systems that make data flow as effortlessly as travel stories. Outside code, I mentor young minds — because both platforms and people deserve a strong foundation.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* ─── HERO SECTION ───────────────────────────────────────────────── */}
+      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        {/* Background elements */}
+        <div className="absolute inset-0 bg-grid pointer-events-none" />
+        <div className="absolute -top-40 right-40 hero-orb w-96 h-96 bg-emerald-500" />
+        <div className="absolute -bottom-20 left-20 hero-orb w-80 h-80 bg-blue-500" />
 
-      {/* About Section */}
-      <section id="about" className="py-20 px-6 bg-gray-100">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-gray-800 text-left">About Me</h2>
-          
-          <div className="max-w-3xl">
-            <div className="space-y-4">
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Hi, I&apos;m Daksha Talekar — a Software Engineer who enjoys building systems that make data less of a puzzle and more of a story.
-              </p>
-              
-              <p className="text-lg text-gray-600 leading-relaxed">
-                At Expedia Group, I work on the Integrated Data Stores (IDS) platform — the backbone for some of Expedia&apos;s most important data. IDS acts as a single source of truth for entities like Travelers, Supply, Places, and Trips, making data trustworthy, discoverable, and easy to use. Through Java, Spring Boot, and REST APIs, I help ensure that everything from personalization to analytics runs on clean, reliable, and scalable foundations.
-              </p>
-              
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Earlier, during my internship at VOIS (Vodafone Intelligent Solutions), I helped build a platform to consolidate blood bank data across a city — connecting hospitals and enabling quicker access to life-saving resources. That experience grounded me in how technology can directly impact people&apos;s lives.
-              </p>
-              
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Outside of work, I volunteer with U&I Trust, a charity that empowers disadvantaged children and individuals across India. Teaching and mentoring here isn&apos;t just about academics — it&apos;s about building stronger communities, taking ownership, and leading with purpose. What inspires me most is knowing that even small efforts can create impact that truly matters.
-              </p>
-              
-              <p className="text-lg text-gray-600 leading-relaxed">
-                For me, software engineering — and volunteering — share the same essence: it&apos;s all about solving problems, creating opportunities, and making a lasting difference.
-              </p>
+        <div className="relative z-10 max-w-4xl mx-auto px-6">
+          <AnimateOnScroll className="text-center">
+            <div className="mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--accent-dim)] border border-[var(--accent-border)]">
+              <span className="text-[var(--accent)] text-sm font-medium">Welcome to my portfolio</span>
+              <span className="text-xl">👋</span>
             </div>
-            
-            {/* Read More and Let's Connect */}
-            <div className="mt-12 flex justify-between items-end">
-              <a 
-                href="/experience"
-                className="inline-flex items-center text-gray-600 hover:text-gray-800 transition-colors group"
+
+            <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
+              <span className="gradient-text">Crafting Data Systems </span>
+              <span className="block text-[var(--accent)]">That Scale & Secure</span>
+            </h1>
+
+            <p className="text-xl md:text-2xl text-[var(--text-secondary)] mb-12 max-w-3xl mx-auto leading-relaxed">
+              Software Engineer at Expedia building distributed data platforms. Passionate about systems design, security, and mentoring the next generation of engineers.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="#projects"
+                className="px-8 py-4 bg-[var(--accent)] text-black font-semibold rounded-lg hover:bg-emerald-400 transition-all hover:shadow-lg hover:shadow-emerald-500/30 inline-flex items-center justify-center gap-2"
               >
-                <span className="text-lg font-medium">Read more</span>
-                <svg 
-                  className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                View My Work
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </a>
-              
-              <div className="flex items-center space-x-4">
-                <span className="text-lg font-medium text-gray-600">Let&apos;s connect:</span>
-                <a 
-                  href="mailto:dakshatalekar123@gmail.com"
-                  className="inline-flex items-center text-gray-600 hover:text-gray-800 transition-colors group"
-                >
-                  <svg 
-                    className="w-5 h-5 group-hover:scale-110 transition-transform" 
-                    fill="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h1.416L12 11.73l8.948-7.909h1.416c.904 0 1.636.732 1.636 1.636z"/>
-                  </svg>
-                </a>
-                <a 
-                  href="https://linkedin.com/in/daksha-talekar-a0a4b7211"
-                  target="_blank"
-                  className="inline-flex items-center text-gray-600 hover:text-gray-800 transition-colors group"
-                >
-                  <svg 
-                    className="w-5 h-5 group-hover:scale-110 transition-transform" 
-                    fill="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                  </svg>
-                </a>
+              <a
+                href="#contact"
+                className="px-8 py-4 border border-[var(--border-hover)] text-[var(--text-primary)] font-semibold rounded-lg hover:bg-[var(--bg-card)] transition-all inline-flex items-center justify-center gap-2"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                Get in Touch
+              </a>
+            </div>
+
+            <div className="mt-16 pt-16 border-t border-[var(--border)] flex flex-col md:flex-row justify-center gap-12">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-[var(--accent)]">2+ years</div>
+                <div className="text-[var(--text-secondary)]">Industry Experience</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-[var(--accent)]">100+</div>
+                <div className="text-[var(--text-secondary)]">Supported Teams</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-[var(--accent)]">5+</div>
+                <div className="text-[var(--text-secondary)]">Major Systems Built</div>
               </div>
             </div>
-            
-            {/* Resume Download */}
-            <div className="mt-8 text-center">
-              <a 
-                href="/resume.pdf"
-                download="Daksha_Talekar_Resume.pdf"
-                className="inline-flex items-center px-6 py-3 bg-gray-800 text-white rounded-lg font-medium hover:bg-gray-700 transition-colors group"
-              >
-                <svg 
-                  className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                Download Resume
-              </a>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
+      {/* ─── ABOUT SECTION ───────────────────────────────────────────────── */}
+      <section id="about" className="py-32 px-6 bg-[var(--bg-secondary)]">
+        <div className="max-w-4xl mx-auto">
+          <AnimateOnScroll>
+            <div className="mb-16">
+              <div className="section-label mb-4">About</div>
+              <h2 className="text-5xl md:text-6xl font-bold mb-8">Building Reliable Foundations</h2>
             </div>
+          </AnimateOnScroll>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <AnimateOnScroll delay={100} className="md:col-span-2">
+              <div className="space-y-6 text-[var(--text-secondary)] leading-relaxed">
+                <p>
+                  I'm a Software Engineer at Expedia Group, working on the Integrated Data Stores (IDS) platform — the backbone for some of Expedia's most critical data infrastructure. My focus is designing scalable, secure, and observable systems that enable teams across the organization to trust and leverage data confidently.
+                </p>
+
+                <p>
+                  Beyond building systems, I'm deeply interested in authorization patterns, data governance, and system reliability. At Expedia, I've designed fine-grained access control models inspired by industry standards like Zanzibar, led real-time data synchronization pipelines, and increased code coverage by 40% through rigorous testing practices.
+                </p>
+
+                <p>
+                  Earlier in my career, I interned at VOIS (Vodafone Intelligent Solutions), where I built a blood bank data consolidation platform that connected hospitals and improved emergency resource access. That experience reinforced my belief that good engineering solves real human problems.
+                </p>
+
+                <p>
+                  Outside of work, I mentor students through U&I Trust, a non-profit empowering disadvantaged communities in India. Teaching isn't just about academics — it's about building confidence, instilling ownership, and creating opportunities for the next generation.
+                </p>
+              </div>
+            </AnimateOnScroll>
+
+            <AnimateOnScroll delay={200} className="md:col-span-1">
+              <div className="card p-8 sticky top-32">
+                <div className="text-sm font-semibold text-[var(--accent)] mb-6">KEY INTERESTS</div>
+                <div className="space-y-4">
+                  <div>
+                    <div className="font-semibold mb-1">Systems Design</div>
+                    <div className="text-sm text-[var(--text-secondary)]">Scalable, observable architecture</div>
+                  </div>
+                  <div>
+                    <div className="font-semibold mb-1">Data Governance</div>
+                    <div className="text-sm text-[var(--text-secondary)]">Authorization & compliance</div>
+                  </div>
+                  <div>
+                    <div className="font-semibold mb-1">Mentorship</div>
+                    <div className="text-sm text-[var(--text-secondary)]">Growing the next generation</div>
+                  </div>
+                </div>
+              </div>
+            </AnimateOnScroll>
           </div>
         </div>
       </section>
 
-      {/* Recommendations Section */}
-      <section id="recommendations" className="py-20 px-6 bg-gray-100">
+      {/* ─── SKILLS SECTION ───────────────────────────────────────────────── */}
+      <section id="skills" className="py-32 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-gray-800 text-left">Recommendations</h2>
-          
-          <div className="space-y-8">
-            <div className="bg-white rounded-xl p-8 shadow-md border border-gray-200">
-              <div className="flex items-start mb-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-blue-600 font-bold text-lg">UA</span>
-                </div>
+          <AnimateOnScroll>
+            <div className="mb-16">
+              <div className="section-label mb-4">Skills</div>
+              <h2 className="text-5xl md:text-6xl font-bold">Technical Arsenal</h2>
+            </div>
+          </AnimateOnScroll>
+
+          <div className="grid md:grid-cols-2 gap-12">
+            {Object.entries(skills).map(([ category, techs ], idx) => (
+              <AnimateOnScroll key={category} delay={idx * 100} className="space-y-6">
                 <div>
-                  <h3 className="text-xl font-bold text-gray-800">Utkarshini Acharya</h3>
-                  <p className="text-gray-600">SDE II at Expedia Group</p>
-                  <p className="text-sm text-gray-500">August 29, 2025 • Utkarshini was senior to Daksha but didn&apos;t manage Daksha directly</p>
+                  <h3 className="text-lg font-semibold mb-4 text-[var(--text-primary)]">{category}</h3>
+                  <div className="flex flex-wrap gap-3">
+                    {techs.map((tech) => (
+                      <span key={tech} className="skill-tag">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-              <blockquote className="text-gray-700 leading-relaxed italic">
-                &ldquo;I had the pleasure of working closely with Daksha on several key initiatives, and throughout our time collaborating, I was consistently impressed by her professionalism, technical growth, and ability to take ownership of complex tasks.
-                <br/><br/>
-                In the context of fast-paced and high-impact projects, she demonstrated strong initiative and made meaningful contributions to important product features. Her consistency and alignment with our team&apos;s standards and workflows made her a reliable and valuable team member. It was especially rewarding to see how quickly she absorbed feedback and applied it, a clear sign of her curiosity and eagerness to learn.
-                <br/><br/>
-                Working together on feature development and process alignment, I saw firsthand how she navigated challenges with maturity and a solutions-oriented mindset. Her progress over time has been remarkable, both in terms of technical capability and confidence in execution.
-                <br/><br/>
-                Beyond her technical strengths, she brought excellent interpersonal skills to the team, clear communication, collaboration, and a thoughtful approach to cross-functional work. She has grown immensely and will no doubt continue to thrive and contribute meaningfully wherever she goes.&rdquo;
-              </blockquote>
-            </div>
+              </AnimateOnScroll>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-20 px-6 bg-gray-100">
+      {/* ─── PROJECTS SECTION ───────────────────────────────────────────────── */}
+      <section id="projects" className="py-32 px-6 bg-[var(--bg-secondary)]">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-gray-800 text-left">Projects</h2>
-          
-          <div className="bg-white rounded-xl p-12 shadow-md border border-gray-200">
-            <p className="text-xl text-gray-600 leading-relaxed mb-6">
-              Continuously working on new projects involving distributed systems, data engineering,
-              and backend architecture. Check out my GitHub for the latest updates!
-            </p>
-            <a 
-              href="https://github.com/coding-ship-it" 
-              target="_blank" 
-              className="inline-flex items-center text-gray-800 font-medium hover:text-gray-600 transition-colors text-lg"
+          <AnimateOnScroll>
+            <div className="mb-16">
+              <div className="section-label mb-4">Portfolio</div>
+              <h2 className="text-5xl md:text-6xl font-bold">Featured Projects</h2>
+            </div>
+          </AnimateOnScroll>
+
+          <div className="space-y-8">
+            {projects.map((project, idx) => (
+              <AnimateOnScroll key={project.id} delay={idx * 100}>
+                <div className="card p-8 cursor-pointer" onClick={() => setExpandedProject(expandedProject === project.id ? null : project.id)}>
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
+                      <p className="text-[var(--text-secondary)] mb-4">{project.description}</p>
+                    </div>
+                    <span className="text-xs font-mono text-[var(--text-muted)] bg-[var(--bg-primary)] px-3 py-1 rounded">
+                      {project.year}
+                    </span>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tech.map((t) => (
+                      <span key={t} className="skill-tag text-xs">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  {expandedProject === project.id && (
+                    <div className="mt-6 pt-6 border-t border-[var(--border)] space-y-4">
+                      <div>
+                        <h4 className="font-semibold text-[var(--accent)] mb-3">Key Highlights</h4>
+                        <ul className="space-y-2">
+                          {project.highlights.map((highlight) => (
+                            <li key={highlight} className="flex gap-2 text-[var(--text-secondary)]">
+                              <span className="text-[var(--accent)]">•</span>
+                              <span>{highlight}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="pt-4 border-t border-[var(--border)]">
+                        <div className="font-semibold text-[var(--accent)] mb-2">Impact</div>
+                        <p className="text-[var(--text-secondary)]">{project.impact}</p>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="mt-4 text-[var(--text-muted)] text-sm">
+                    {expandedProject === project.id ? 'Click to collapse' : 'Click to expand'}
+                  </div>
+                </div>
+              </AnimateOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── EXPERIENCE SECTION ───────────────────────────────────────────────── */}
+      <section id="experience" className="py-32 px-6">
+        <div className="max-w-4xl mx-auto">
+          <AnimateOnScroll>
+            <div className="mb-16">
+              <div className="section-label mb-4">Experience</div>
+              <h2 className="text-5xl md:text-6xl font-bold">Professional Journey</h2>
+            </div>
+          </AnimateOnScroll>
+
+          <div className="relative">
+            <div className="timeline-line" />
+            <div className="space-y-12">
+              {/* Expedia */}
+              <AnimateOnScroll delay={100}>
+                <div className="relative pl-16">
+                  <div className="timeline-dot absolute -left-6 top-2" />
+                  <div>
+                    <div className="flex justify-between items-start mb-2">
+                      <div>
+                        <h3 className="text-xl font-bold">Software Development Engineer I</h3>
+                        <div className="text-[var(--accent)] font-semibold">Expedia Group</div>
+                      </div>
+                      <span className="text-sm text-[var(--text-muted)]">Sept 2023 – Present</span>
+                    </div>
+                    <p className="text-[var(--text-secondary)] mb-3">Bengaluru, India</p>
+                    <ul className="space-y-2 text-[var(--text-secondary)]">
+                      <li>🔒 Designed Zanzibar-inspired fine-grained authorization system (Merlon) supporting 100+ teams</li>
+                      <li>📊 Built DataSync CDC pipeline with Kafka, Flink, and Iceberg for real-time synchronization</li>
+                      <li>✅ Increased method coverage by 40% through rigorous unit and integration testing</li>
+                      <li>🔧 Implemented Spring Boot microservices and APIs for self-served data platform</li>
+                    </ul>
+                  </div>
+                </div>
+              </AnimateOnScroll>
+
+              {/* VOIS */}
+              <AnimateOnScroll delay={200}>
+                <div className="relative pl-16">
+                  <div className="timeline-dot-muted absolute -left-6 top-2" />
+                  <div>
+                    <div className="flex justify-between items-start mb-2">
+                      <div>
+                        <h3 className="text-xl font-bold">Summer Intern</h3>
+                        <div className="text-[var(--text-secondary)] font-semibold">VOIS (Vodafone Intelligent Solutions)</div>
+                      </div>
+                      <span className="text-sm text-[var(--text-muted)]">Jun – Sep 2022</span>
+                    </div>
+                    <p className="text-[var(--text-secondary)] mb-3">Pune, India</p>
+                    <p className="text-[var(--text-secondary)]">🩸 Developed blood bank data consolidation platform connecting 50+ hospitals for life-saving resource access</p>
+                  </div>
+                </div>
+              </AnimateOnScroll>
+            </div>
+          </div>
+
+          <AnimateOnScroll delay={300} className="mt-16 pt-16 border-t border-[var(--border)] text-center">
+            <a
+              href="http://experience"
+              className="inline-flex items-center px-8 py-4 bg-[var(--accent)] text-black font-semibold rounded-lg hover:bg-emerald-400 transition-all gap-2"
             >
-              View on GitHub 
-              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              View Full Experience
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </a>
-          </div>
+          </AnimateOnScroll>
         </div>
       </section>
 
-      {/* Awards Section */}
-      <section id="awards" className="py-20 px-6 bg-gray-100">
+      {/* ─── RECOMMENDATIONS SECTION ───────────────────────────────────────────────── */}
+      <section id="recommendations" className="py-32 px-6 bg-[var(--bg-secondary)]">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-gray-800 text-left">Awards & Achievements</h2>
+          <AnimateOnScroll>
+            <div className="mb-16">
+              <div className="section-label mb-4">Social Proof</div>
+              <h2 className="text-5xl md:text-6xl font-bold">What Colleagues Say</h2>
+            </div>
+          </AnimateOnScroll>
 
-          <div className="space-y-8">
-            <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 border border-gray-200 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="flex items-start">
-                <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mr-6 shadow-md">
-                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-800 mb-2">High Five Awardee & Travel Award</h3>
-                  <p className="text-lg text-gray-600 font-semibold mb-2">Expedia Group</p>
-                  <p className="text-gray-600 leading-relaxed">
-                    Recognized for exceptional performance and contribution to the team with outstanding project delivery and innovative solutions that directly impacted platform reliability.
-                  </p>
-                </div>
+          <div className="card p-8">
+            <div className="flex gap-4 mb-4">
+              <div className="w-12 h-12 rounded-full bg-[var(--accent)]/20 flex items-center justify-center text-[var(--accent)] font-bold">
+                UA
+              </div>
+              <div>
+                <div className="font-semibold">Utkarshini Acharya</div>
+                <div className="text-sm text-[var(--text-secondary)]">SDE II, Expedia Group</div>
+                <div className="text-xs text-[var(--text-muted)]">Senior collaborator</div>
               </div>
             </div>
-
-            <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 border border-gray-200 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="flex items-start">
-                <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mr-6 shadow-md">
-                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6L23 9l-11-6zM6.5 12.5v4.5L12 19.4l5.5-2.4v-4.5L12 15l-5.5-2.5z"/>
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-800 mb-2">Volunteer Teacher</h3>
-                  <p className="text-lg text-gray-600 font-semibold mb-2">U & I Organization</p>
-                  <p className="text-gray-600 leading-relaxed">
-                    Teaching English to students in grades 7–9, contributing to community development through education and empowering the next generation with essential communication skills.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 border border-gray-200 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="flex items-start">
-                <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mr-6 shadow-md">
-                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-800 mb-2">LPF Scholar (2020)</h3>
-                  <p className="text-lg text-gray-600 font-semibold mb-2">Academic Excellence</p>
-                  <p className="text-gray-600 leading-relaxed">
-                    Awarded prestigious scholarship for outstanding academic performance and demonstrated leadership potential in engineering studies.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 border border-gray-200 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="flex items-start">
-                <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mr-6 shadow-md">
-                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-800 mb-2">Google Kickstart Participant (2022)</h3>
-                  <p className="text-lg text-gray-600 font-semibold mb-2">Competitive Programming</p>
-                  <p className="text-gray-600 leading-relaxed">
-                    Participated in Google&apos;s prestigious competitive programming competition, demonstrating advanced problem-solving skills and algorithmic thinking.
-                  </p>
-                </div>
-              </div>
-            </div>
+            <blockquote className="text-[var(--text-secondary)] italic leading-relaxed">
+              "Daksha impressed me with her technical growth, ownership of complex tasks, and remarkable progress over time. Her ability to navigate challenges with maturity, combined with her excellent communication skills and solutions-oriented mindset, makes her a valuable team member. She's growing immensely and will thrive wherever she goes."
+            </blockquote>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-20 px-6 bg-gray-100">
+      {/* ─── AWARDS SECTION ───────────────────────────────────────────────── */}
+      <section id="awards" className="py-32 px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-gray-800 text-left">Let&apos;s get in touch!</h2>
-          
-          <div className="mb-16">
-            <p className="text-xl text-gray-600 max-w-2xl leading-relaxed text-left">
-              If you have a cool project idea or just want to connect / collaborate, feel free
-              to reach out to me on any of the platforms mentioned below.
-            </p>
-          </div>
+          <AnimateOnScroll>
+            <div className="mb-16">
+              <div className="section-label mb-4">Recognition</div>
+              <h2 className="text-5xl md:text-6xl font-bold">Awards & Achievements</h2>
+            </div>
+          </AnimateOnScroll>
 
-          <div className="flex justify-between items-center mb-16">
-            <div className="text-left">
-              <div className="mb-4">
-                <a 
-                  href="mailto:dakshatalekar123@gmail.com" 
-                  className="text-2xl md:text-3xl font-medium text-gray-800 hover:text-gray-600 transition-colors"
-                >
-                  dakshatalekar123@gmail.com
-                </a>
+          <div className="grid md:grid-cols-2 gap-6">
+            <AnimateOnScroll delay={100} className="card p-6">
+              <div className="flex gap-3 items-start">
+                <div className="text-2xl">⭐</div>
+                <div>
+                  <h3 className="font-bold text-lg mb-1">High Five Awardee</h3>
+                  <p className="text-[var(--text-secondary)] text-sm">Expedia Group – Exceptional performance and innovation</p>
+                </div>
               </div>
-            </div>
-            
-            <div className="flex space-x-6">
-              <a
-                href="https://linkedin.com/in/daksha-talekar-a0a4b7211"
-                target="_blank"
-                className="text-gray-600 hover:text-gray-800 transition-colors"
-                aria-label="LinkedIn"
-              >
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-              </a>
-              
-              <a
-                href="https://github.com/coding-ship-it"
-                target="_blank"
-                className="text-gray-600 hover:text-gray-800 transition-colors"
-                aria-label="GitHub"
-              >
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.30 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                </svg>
-              </a>
+            </AnimateOnScroll>
 
-              <a
-                href="https://peerlist.io/dakshata123"
-                target="_blank"
-                className="text-gray-600 hover:text-gray-800 transition-colors"
-                aria-label="Peerlist"
-              >
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                </svg>
-              </a>
+            <AnimateOnScroll delay={150} className="card p-6">
+              <div className="flex gap-3 items-start">
+                <div className="text-2xl">🏆</div>
+                <div>
+                  <h3 className="font-bold text-lg mb-1">Travel Award</h3>
+                  <p className="text-[var(--text-secondary)] text-sm">Expedia Group – Outstanding platform contribution</p>
+                </div>
+              </div>
+            </AnimateOnScroll>
 
-              <a
-                href="https://vercel.com/coding-ship-it"
-                target="_blank"
-                className="text-gray-600 hover:text-gray-800 transition-colors"
-                aria-label="Vercel"
-              >
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 22.525H0l12-21.05 12 21.05z"/>
-                </svg>
-              </a>
-            </div>
-          </div>
+            <AnimateOnScroll delay={200} className="card p-6">
+              <div className="flex gap-3 items-start">
+                <div className="text-2xl">🎓</div>
+                <div>
+                  <h3 className="font-bold text-lg mb-1">LPF Scholar (2020)</h3>
+                  <p className="text-[var(--text-secondary)] text-sm">Recognized for academic excellence</p>
+                </div>
+              </div>
+            </AnimateOnScroll>
 
-          <div className="text-center">
-            <p className="text-gray-500 mb-4">© 2025 Daksha Talekar. All rights reserved.</p>
-            <div className="flex justify-center space-x-4 text-sm text-gray-400">
-              <a href="#home" className="hover:text-gray-600 transition-colors">Home</a>
-              <a href="#about" className="hover:text-gray-600 transition-colors">About</a>
-              <a href="#recommendations" className="hover:text-gray-600 transition-colors">Recommendations</a>
-              <a href="#projects" className="hover:text-gray-600 transition-colors">Projects</a>
-              <a href="#awards" className="hover:text-gray-600 transition-colors">Awards</a>
-              <a href="#contact" className="hover:text-gray-600 transition-colors">Contact</a>
-            </div>
+            <AnimateOnScroll delay={250} className="card p-6">
+              <div className="flex gap-3 items-start">
+                <div className="text-2xl">📚</div>
+                <div>
+                  <h3 className="font-bold text-lg mb-1">Google Kickstart '22</h3>
+                  <p className="text-[var(--text-secondary)] text-sm">Competitive programming participant</p>
+                </div>
+              </div>
+            </AnimateOnScroll>
+
+            <AnimateOnScroll delay={300} className="card p-6">
+              <div className="flex gap-3 items-start">
+                <div className="text-2xl">👨‍🏫</div>
+                <div>
+                  <h3 className="font-bold text-lg mb-1">Volunteer Educator</h3>
+                  <p className="text-[var(--text-secondary)] text-sm">U&I Trust – Teaching English to grades 7–9</p>
+                </div>
+              </div>
+            </AnimateOnScroll>
           </div>
         </div>
       </section>
+
+      {/* ─── CONTACT SECTION ───────────────────────────────────────────────── */}
+      <section id="contact" className="py-32 px-6 bg-[var(--bg-secondary)]">
+        <div className="max-w-4xl mx-auto">
+          <AnimateOnScroll>
+            <div className="text-center mb-16">
+              <div className="section-label mb-4 justify-center flex">Contact</div>
+              <h2 className="text-5xl md:text-6xl font-bold mb-6">Let's Build Something Great</h2>
+              <p className="text-xl text-[var(--text-secondary)] max-w-2xl mx-auto">
+                Have an interesting project or opportunity? Reach out — I'm always open to discussing systems design, collaboration, and growth.
+              </p>
+            </div>
+          </AnimateOnScroll>
+
+          <AnimateOnScroll delay={100} className="flex flex-col md:flex-row gap-6 justify-center">
+            <a
+              href="mailto:dakshatalekar123@gmail.com"
+              className="card px-8 py-6 text-center hover:bg-[var(--bg-card-hover)] group"
+            >
+              <div className="text-3xl mb-3">✉️</div>
+              <div className="font-semibold group-hover:text-[var(--accent)] transition-colors">Email</div>
+              <div className="text-sm text-[var(--text-secondary)]">dakshatalekar123@gmail.com</div>
+            </a>
+
+            <a
+              href="https://linkedin.com/in/daksha-talekar-a0a4b7211"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card px-8 py-6 text-center hover:bg-[var(--bg-card-hover)] group"
+            >
+              <div className="text-3xl mb-3">💼</div>
+              <div className="font-semibold group-hover:text-[var(--accent)] transition-colors">LinkedIn</div>
+              <div className="text-sm text-[var(--text-secondary)]">Connect with me</div>
+            </a>
+
+            <a
+              href="https://github.com/coding-ship-it"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card px-8 py-6 text-center hover:bg-[var(--bg-card-hover)] group"
+            >
+              <div className="text-3xl mb-3">💻</div>
+              <div className="font-semibold group-hover:text-[var(--accent)] transition-colors">GitHub</div>
+              <div className="text-sm text-[var(--text-secondary)]">View my code</div>
+            </a>
+          </AnimateOnScroll>
+
+          <AnimateOnScroll delay={200} className="mt-16 pt-16 border-t border-[var(--border)] text-center">
+            <a
+              href="/resume.pdf"
+              download="Daksha_Talekar_Resume.pdf"
+              className="inline-flex items-center px-8 py-4 bg-[var(--accent)] text-black font-semibold rounded-lg hover:bg-emerald-400 transition-all gap-2"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Download Resume
+            </a>
+          </AnimateOnScroll>
+        </div>
+      </section>
+
+      {/* ─── FOOTER ───────────────────────────────────────────────────────────────── */}
+      <footer className="py-12 px-6 bg-[var(--bg-primary)] border-t border-[var(--border)]">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-[var(--text-muted)] mb-4">
+            © {new Date().getFullYear()} Daksha Talekar. All rights reserved.
+          </p>
+          <div className="flex justify-center gap-6">
+            <a href="https://linkedin.com/in/daksha-talekar-a0a4b7211" target="_blank" rel="noopener noreferrer" className="text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors">
+              LinkedIn
+            </a>
+            <a href="https://github.com/coding-ship-it" target="_blank" rel="noopener noreferrer" className="text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors">
+              GitHub
+            </a>
+            <a href="https://peerlist.io/dakshata123" target="_blank" rel="noopener noreferrer" className="text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors">
+              Peerlist
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

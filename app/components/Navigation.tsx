@@ -9,8 +9,8 @@ interface NavProps {
 
 const homeLinks = [
   { href: '#about', label: 'About' },
-  { href: '#work', label: 'Work' },
   { href: '#skills', label: 'Skills' },
+  { href: '#projects', label: 'Projects' },
   { href: '#experience', label: 'Experience' },
   { href: '#recommendations', label: 'Testimonials' },
   { href: '#contact', label: 'Contact' },
